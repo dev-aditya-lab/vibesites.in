@@ -8,7 +8,7 @@ import { EASE_PREMIUM } from "@/lib/motion";
 
 export default function PageHero({ eyebrow, title, description, align = "left" }) {
   return (
-    <section className="relative overflow-hidden pb-16 pt-36 sm:pt-44">
+    <section className="relative overflow-hidden pb-16 pt-28 sm:pt-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -top-32 right-[-10%] size-[30rem] rounded-full bg-rust-100/50 blur-3xl" />
       </div>

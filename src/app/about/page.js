@@ -10,7 +10,7 @@ import { siteConfig } from "@/data/site";
 export const metadata = {
   title: "About Us",
   description:
-    "Vibesites is a Meta-verified web and app development agency founded in 2019. Learn our story, our values, and why 240+ businesses trust us with their web presence.",
+    "Vibesites is a web and app development agency founded in 2019. Learn our story, our values, and why 240+ businesses trust us with their web presence.",
   alternates: { canonical: "/about" },
 };
 
@@ -47,9 +47,9 @@ export default function AboutPage() {
               <p className="mt-4 leading-relaxed text-ink-700">
                 That distinction changed how we work. Every project starts with your business goal, not a blank
                 Figma canvas. Today we&apos;re a team of 32 designers, engineers, and strategists across design,
-                engineering, and marketing — verified by Meta as a legitimate WhatsApp business, because we run
-                nearly every client relationship straight through it. No ticket queues, no account managers relaying
-                messages. Just direct answers from the people doing the work.
+                engineering, and marketing — and we run nearly every client relationship straight through WhatsApp.
+                No ticket queues, no account managers relaying messages. Just direct answers from the people doing
+                the work.
               </p>
               <p className="mt-4 leading-relaxed text-ink-700">
                 We&apos;ve since shipped 240+ projects across e-commerce, SaaS, healthcare, hospitality, and

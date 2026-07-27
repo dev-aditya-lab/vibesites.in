@@ -3,7 +3,7 @@ import LogoMarquee from "@/components/sections/LogoMarquee";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import StatsBand from "@/components/sections/StatsBand";
 import ProcessSteps from "@/components/sections/ProcessSteps";
-import PortfolioShowcase from "@/components/sections/PortfolioShowcase";
+import HorizontalShowcase from "@/components/sections/HorizontalShowcase";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingTeaser from "@/components/sections/PricingTeaser";
 import IndustriesBand from "@/components/sections/IndustriesBand";
@@ -23,7 +23,7 @@ export default function Home() {
       <ServicesGrid />
       <StatsBand />
       <ProcessSteps />
-      <PortfolioShowcase />
+      <HorizontalShowcase />
       <TestimonialsSection />
       <PricingTeaser />
       <IndustriesBand />

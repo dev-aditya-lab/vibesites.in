@@ -1,6 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MessageCircle, ArrowRight, Star } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -8,13 +12,35 @@ import RevealText from "@/components/ui/RevealText";
 import { buildWhatsAppLink, defaultWhatsAppMessage, siteConfig } from "@/data/site";
 import { EASE_PREMIUM } from "@/lib/motion";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export default function Hero() {
+  const sectionRef = useRef(null);
+  const orbOneRef = useRef(null);
+  const orbTwoRef = useRef(null);
+
+  useGSAP(
+    () => {
+      gsap.to(orbOneRef.current, {
+        y: 160,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: true },
+      });
+      gsap.to(orbTwoRef.current, {
+        y: -100,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: true },
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section className="relative overflow-hidden pb-20 pt-36 sm:pt-44 lg:pb-28 lg:pt-52">
-      {/* Ambient background shapes */}
+    <section ref={sectionRef} className="relative overflow-hidden pb-20 pt-28 sm:pt-32 lg:pb-28 lg:pt-36">
+      {/* Ambient background shapes, parallaxed via GSAP ScrollTrigger */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-24 right-[-10%] size-[36rem] rounded-full bg-rust-200/40 blur-3xl" />
-        <div className="absolute bottom-0 left-[-15%] size-[28rem] rounded-full bg-olive-200/40 blur-3xl" />
+        <div ref={orbOneRef} className="absolute -top-24 right-[-10%] size-[36rem] rounded-full bg-rust-200/40 blur-3xl" />
+        <div ref={orbTwoRef} className="absolute bottom-0 left-[-15%] size-[28rem] rounded-full bg-olive-200/40 blur-3xl" />
         <svg className="absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden>
           <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
             <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" strokeWidth="1" />
@@ -31,7 +57,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 rounded-full border border-ink-300 bg-cream-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-700 backdrop-blur"
         >
           <span className="flex size-1.5 rounded-full bg-olive-500" />
-          Meta &amp; WhatsApp Verified Business
+          Trusted by 200+ Businesses Worldwide
         </motion.div>
 
         <h1 className="mt-8 max-w-5xl text-display-xl font-medium text-ink-950">

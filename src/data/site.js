@@ -3,12 +3,12 @@ export const siteConfig = {
   legalName: "Vibesites",
   tagline: "Websites and apps built to convert.",
   description:
-    "Vibesites is a Meta-verified web and app development agency. We design and build fast, beautiful websites, e-commerce stores, and mobile apps that turn visitors into customers.",
+    "Vibesites is a web and app development agency. We design and build fast, beautiful websites, e-commerce stores, and mobile apps that turn visitors into customers.",
   url: "https://vibesites.in",
   email: "hello@vibesites.in",
   whatsapp: {
-    display: "+1 555-346-5140",
-    e164: "15553465140",
+    display: "+1 555-363-9502",
+    e164: "15553639502",
   },
   social: {
     instagram: "https://instagram.com/vibesites",

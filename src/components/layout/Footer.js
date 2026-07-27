@@ -82,8 +82,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-ink-800 py-8 text-xs text-cream-500 sm:flex-row sm:items-center">
           <p>
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved. A Meta &amp; WhatsApp verified
-            business.
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <a href={`mailto:${siteConfig.email}`} className="link-underline flex items-center gap-1.5">
