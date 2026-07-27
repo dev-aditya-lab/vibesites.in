@@ -2,13 +2,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin/auth";
 import { signOut } from "@/lib/admin/actions";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-
-const mobileNavItems = [
-  { href: "/admin", label: "Dashboard" },
-  { href: "/admin/leads", label: "Leads" },
-  { href: "/admin/by-service", label: "By service" },
-  { href: "/admin/by-location", label: "By location" },
-];
+import { navItems as mobileNavItems } from "@/lib/admin/nav";
 
 export default async function AdminProtectedLayout({ children }) {
   const admin = await requireAdmin();

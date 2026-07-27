@@ -3,13 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/admin", label: "Dashboard", exact: true },
-  { href: "/admin/leads", label: "Leads" },
-  { href: "/admin/by-service", label: "By service" },
-  { href: "/admin/by-location", label: "By location" },
-];
+import { navItems } from "@/lib/admin/nav";
 
 export default function AdminSidebar({ isSuperAdmin }) {
   const pathname = usePathname();

@@ -97,8 +97,8 @@ export const portfolio = [
       { label: "Page builder", value: "Removed" },
       { label: "Editable by client", value: "Yes" },
     ],
-    image: "/portfolio/quiet-page.png",
-    thumb: "/portfolio/quiet-page.png",
+    image: "/portfolio/QuietPage.png",
+    thumb: "/portfolio/QuietPage.png",
   },
   {
     slug: "roast-collective",
