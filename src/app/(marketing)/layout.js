@@ -39,17 +39,35 @@ export const metadata = {
   ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     url: siteConfig.url,
     siteName: siteConfig.name,
     title: `${siteConfig.name} — Web & App Development Agency`,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/vibesites-og.jpeg",
+        width: 1424,
+        height: 752,
+        alt: `${siteConfig.name} — Web & App Development Agency`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — Web & App Development Agency`,
     description: siteConfig.description,
+    images: ["/vibesites-og.jpeg"],
   },
   robots: {
     index: true,
