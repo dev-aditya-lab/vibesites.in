@@ -11,10 +11,10 @@ export const siteConfig = {
     e164: "15553639502",
   },
   social: {
-    instagram: "https://instagram.com/vibesites",
-    linkedin: "https://linkedin.com/company/vibesites",
-    twitter: "https://twitter.com/vibesites",
-    facebook: "https://facebook.com/vibesites",
+    instagram: "https://instagram.com/vibesites.in",
+    // linkedin: "https://linkedin.com/company/vibesites",
+    // twitter: "https://twitter.com/vibesites",
+    facebook: "https://www.facebook.com/profile.php?id=61588770368457",
   },
   address: {
     locality: "Remote-first",
@@ -25,7 +25,7 @@ export const siteConfig = {
     { label: "Projects shipped", value: 240, suffix: "+" },
     { label: "Client rating", value: 4.9, suffix: "/5" },
     { label: "Team members", value: 32, suffix: "+" },
-    { label: "Countries served", value: 18, suffix: "+" },
+    { label: "Countries served", value: 12, suffix: "+" },
   ],
 };
 
