@@ -21,7 +21,7 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 14, height: 14, borderRadius: 999, background: "#c4592b" }} />
+          <div style={{ width: 14, height: 14, borderRadius: 999, background: "#1f7e72" }} />
           <span style={{ fontSize: 28, color: "#e4d8be", letterSpacing: 2, textTransform: "uppercase" }}>
             {siteConfig.name}
           </span>

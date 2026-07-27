@@ -23,7 +23,7 @@ export default function Logo({ className, tone = "light" }) {
       >
         <motion.path
           d="M1 6 C 15 -1, 25 12, 38 5 C 51 -2, 61 12, 74 5 C 87 -2, 97 12, 110 5 C 114 3.5, 117 3, 119 3.5"
-          stroke="var(--color-rust-500)"
+          stroke="var(--color-teal-500)"
           strokeWidth="2"
           strokeLinecap="round"
           initial={{ pathLength: 0, opacity: 0 }}

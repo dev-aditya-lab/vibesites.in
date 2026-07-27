@@ -26,7 +26,7 @@ export default function Accordion({ items, defaultOpen = -1 }) {
                 transition={{ duration: 0.35, ease: EASE_PREMIUM }}
                 className={cn(
                   "flex size-8 shrink-0 items-center justify-center rounded-full border",
-                  isOpen ? "border-rust-500 bg-rust-500 text-cream-50" : "border-ink-300 text-ink-700"
+                  isOpen ? "border-teal-500 bg-teal-500 text-cream-50" : "border-ink-300 text-ink-700"
                 )}
               >
                 <Plus className="size-4" strokeWidth={2.25} />

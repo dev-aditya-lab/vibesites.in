@@ -25,7 +25,7 @@ export default function TeamGrid({ members }) {
             />
           </div>
           <p className="mt-3 font-display text-lg text-ink-900">{member.name}</p>
-          <p className="text-sm text-rust-600">{member.role}</p>
+          <p className="text-sm text-teal-600">{member.role}</p>
           <p className="mt-1.5 text-xs leading-relaxed text-ink-500">{member.bio}</p>
         </motion.div>
       ))}

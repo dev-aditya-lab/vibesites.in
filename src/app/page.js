@@ -9,6 +9,8 @@ import PricingTeaser from "@/components/sections/PricingTeaser";
 import IndustriesBand from "@/components/sections/IndustriesBand";
 import FaqPreview from "@/components/sections/FaqPreview";
 import CTASection from "@/components/sections/CTASection";
+import Container from "@/components/ui/Container";
+import SVGDivider from "@/components/ui/SVGDivider";
 
 export const metadata = {
   title: "Web & App Development Agency",
@@ -24,6 +26,9 @@ export default function Home() {
       <StatsBand />
       <ProcessSteps />
       <HorizontalShowcase />
+      <Container>
+        <SVGDivider stroke="var(--color-teal-500)" />
+      </Container>
       <TestimonialsSection />
       <PricingTeaser />
       <IndustriesBand />

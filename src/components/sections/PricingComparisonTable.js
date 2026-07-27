@@ -1,11 +1,15 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Check, Minus } from "lucide-react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { plans, comparisonRows } from "@/data/pricing";
 import { cn } from "@/lib/utils";
+import { staggerContainer, fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
 
 function Cell({ value }) {
-  if (value === true) return <Check className="mx-auto size-5 text-olive-600" />;
+  if (value === true) return <Check className="mx-auto size-5 text-gold-600" />;
   if (value === false) return <Minus className="mx-auto size-4 text-ink-300" />;
   return <span className="text-sm text-ink-700">{value}</span>;
 }
@@ -21,21 +25,33 @@ export default function PricingComparisonTable() {
           align="center"
         />
 
-        <div className="mt-14 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={fadeUp}
+          transition={defaultTransition()}
+          className="mt-14 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:px-0"
+        >
           <table className="w-full min-w-[860px] border-separate border-spacing-0">
             <thead>
               <tr>
                 <th className="w-1/4 py-4 text-left text-sm font-medium text-ink-500">Feature</th>
                 {plans.map((plan) => (
                   <th key={plan.key} className="w-[18.75%] py-4 text-center">
-                    <span className={cn("font-display text-lg", plan.highlighted && "text-rust-600")}>{plan.name}</span>
+                    <span className={cn("font-display text-lg", plan.highlighted && "text-teal-600")}>{plan.name}</span>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody>
+            <motion.tbody variants={staggerContainer(0.04)} initial="hidden" whileInView="visible" viewport={viewportOnce}>
               {comparisonRows.map((row, i) => (
-                <tr key={row.feature} className={i % 2 === 0 ? "bg-cream-50" : ""}>
+                <motion.tr
+                  key={row.feature}
+                  variants={fadeUp}
+                  transition={defaultTransition()}
+                  className={i % 2 === 0 ? "bg-cream-50" : ""}
+                >
                   <td className="rounded-l-xl py-4 pl-4 text-sm font-medium text-ink-800">{row.feature}</td>
                   <td className="py-4 text-center">
                     <Cell value={row.launch} />
@@ -49,11 +65,11 @@ export default function PricingComparisonTable() {
                   <td className="rounded-r-xl py-4 pr-4 text-center">
                     <Cell value={row.enterprise} />
                   </td>
-                </tr>
+                </motion.tr>
               ))}
-            </tbody>
+            </motion.tbody>
           </table>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

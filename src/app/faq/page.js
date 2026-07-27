@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container";
 import Accordion from "@/components/ui/Accordion";
 import PageHero from "@/components/sections/PageHero";
 import CTASection from "@/components/sections/CTASection";
+import FadeIn from "@/components/ui/FadeIn";
 import { faqCategories } from "@/data/faq";
 
 export const metadata = {
@@ -36,12 +37,12 @@ export default function FaqPage() {
       <section className="py-8 pb-24 lg:pb-32">
         <Container className="max-w-3xl">
           {faqCategories.map((category) => (
-            <div key={category.category} className="border-t border-ink-200 py-12 first:border-t-0 first:pt-0">
+            <FadeIn key={category.category} as="div" className="border-t border-ink-200 py-12 first:border-t-0 first:pt-0">
               <h2 className="font-display text-2xl text-ink-950">{category.category}</h2>
               <div className="mt-4">
                 <Accordion items={category.items} />
               </div>
-            </div>
+            </FadeIn>
           ))}
         </Container>
       </section>

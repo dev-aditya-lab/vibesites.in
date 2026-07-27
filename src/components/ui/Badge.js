@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
 
 const tones = {
-  rust: "bg-rust-50 text-rust-700 ring-1 ring-inset ring-rust-200",
-  olive: "bg-olive-50 text-olive-700 ring-1 ring-inset ring-olive-200",
+  teal: "bg-teal-50 text-teal-700 ring-1 ring-inset ring-teal-200",
+  gold: "bg-gold-50 text-gold-700 ring-1 ring-inset ring-gold-200",
   ink: "bg-ink-900 text-cream-100",
   outline: "bg-transparent text-ink-700 ring-1 ring-inset ring-ink-300",
 };
 
-export default function Badge({ children, tone = "rust", className }) {
+export default function Badge({ children, tone = "teal", className }) {
   return (
     <span
       className={cn(

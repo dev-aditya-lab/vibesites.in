@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import PageHero from "@/components/sections/PageHero";
 import CTASection from "@/components/sections/CTASection";
+import RevealLink from "@/components/ui/RevealLink";
 import { posts } from "@/data/blog";
 
 export const metadata = {
@@ -25,7 +25,7 @@ export default function BlogPage() {
 
       <section className="py-8">
         <Container>
-          <Link href={`/blog/${featured.slug}`} className="group grid grid-cols-1 gap-8 rounded-2xl border border-ink-200 bg-cream-50 p-6 lg:grid-cols-2 lg:items-center lg:p-8">
+          <RevealLink href={`/blog/${featured.slug}`} className="group grid grid-cols-1 gap-8 rounded-2xl border border-ink-200 bg-cream-50 p-6 lg:grid-cols-2 lg:items-center lg:p-8">
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-ink-100">
               <Image
                 src={featured.coverImage}
@@ -36,7 +36,7 @@ export default function BlogPage() {
               />
             </div>
             <div>
-              <span className="rounded-full bg-rust-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rust-700">
+              <span className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
                 {featured.category}
               </span>
               <h2 className="mt-4 font-display text-2xl text-balance text-ink-950 sm:text-3xl">{featured.title}</h2>
@@ -46,20 +46,20 @@ export default function BlogPage() {
                 <span>·</span>
                 <span>{featured.readTime}</span>
               </div>
-              <div className="mt-5 flex items-center gap-1.5 text-sm font-medium text-rust-600">
+              <div className="mt-5 flex items-center gap-1.5 text-sm font-medium text-teal-600">
                 Read the article
                 <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </div>
             </div>
-          </Link>
+          </RevealLink>
         </Container>
       </section>
 
       <section className="py-16">
         <Container>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {rest.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+            {rest.map((post, i) => (
+              <RevealLink key={post.slug} href={`/blog/${post.slug}`} className="group block" delay={(i % 3) * 0.08}>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-ink-100">
                   <Image
                     src={post.coverImage}
@@ -79,7 +79,7 @@ export default function BlogPage() {
                   <span>·</span>
                   <span>{post.readTime}</span>
                 </div>
-              </Link>
+              </RevealLink>
             ))}
           </div>
         </Container>

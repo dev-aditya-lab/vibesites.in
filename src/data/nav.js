@@ -1,5 +1,5 @@
 export const primaryNav = [
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services", megaMenu: true },
   { label: "Work", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },

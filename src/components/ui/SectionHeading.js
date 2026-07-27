@@ -26,7 +26,7 @@ export default function SectionHeading({
         className
       )}
     >
-      {eyebrow && <Badge tone={tone === "dark" ? "outline" : "rust"}>{eyebrow}</Badge>}
+      {eyebrow && <Badge tone={tone === "dark" ? "outline" : "teal"}>{eyebrow}</Badge>}
       <h2
         className={cn(
           sizes[size],

@@ -55,7 +55,7 @@ export default function ContactPage() {
             {infoCards.map((card) => (
               <div key={card.title} className="rounded-2xl border border-ink-200 bg-cream-50 p-6">
                 <div className="flex items-center gap-3">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-rust-50 text-rust-600">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-teal-50 text-teal-600">
                     <card.icon className="size-5" strokeWidth={1.75} />
                   </div>
                   <div>

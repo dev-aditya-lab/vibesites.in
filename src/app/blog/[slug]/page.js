@@ -35,7 +35,7 @@ function ContentBlock({ block, i }) {
       <ul key={i} className="mt-4 flex flex-col gap-2">
         {block.items.map((item) => (
           <li key={item} className="flex items-start gap-3 leading-relaxed text-ink-700">
-            <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-rust-500" />
+            <span className="mt-2.5 size-1.5 shrink-0 rounded-full bg-teal-500" />
             {item}
           </li>
         ))}
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }) {
             <ArrowLeft className="size-4" />
             All articles
           </Link>
-          <span className="mt-8 inline-block rounded-full bg-rust-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rust-700">
+          <span className="mt-8 inline-block rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-teal-700">
             {post.category}
           </span>
           <h1 className="mt-5 text-balance text-display-sm font-medium text-ink-950 sm:text-display-md">{post.title}</h1>
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }) {
             <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
               {related.map((p) => (
                 <Link key={p.slug} href={`/blog/${p.slug}`} className="group block rounded-xl border border-ink-200 bg-cream-50 p-5">
-                  <h3 className="font-display text-lg text-ink-900 group-hover:text-rust-600">{p.title}</h3>
+                  <h3 className="font-display text-lg text-ink-900 group-hover:text-teal-600">{p.title}</h3>
                   <p className="mt-2 text-sm text-ink-600">{p.excerpt}</p>
                 </Link>
               ))}

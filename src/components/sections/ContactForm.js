@@ -11,7 +11,7 @@ import { EASE_PREMIUM } from "@/lib/motion";
 const budgets = ["Under $1,000", "$1,000 – $3,000", "$3,000 – $10,000", "$10,000+", "Not sure yet"];
 
 const inputClasses =
-  "w-full rounded-xl border border-ink-300 bg-cream-50 px-4 py-3.5 text-ink-900 placeholder:text-ink-400 transition-colors duration-300 focus:border-rust-500 focus:outline-none";
+  "w-full rounded-xl border border-ink-300 bg-cream-50 px-4 py-3.5 text-ink-900 placeholder:text-ink-400 transition-colors duration-300 focus:border-teal-500 focus:outline-none";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", service: "", budget: "", message: "" });

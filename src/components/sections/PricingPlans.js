@@ -29,12 +29,12 @@ export default function PricingPlans() {
               className={cn(
                 "relative flex flex-col rounded-2xl border p-7",
                 plan.highlighted
-                  ? "border-rust-400 bg-ink-950 text-cream-100 shadow-soft-xl lg:-translate-y-3"
+                  ? "border-teal-400 bg-ink-950 text-cream-100 shadow-soft-xl lg:-translate-y-3"
                   : "border-ink-200 bg-cream-50"
               )}
             >
               {plan.badge && (
-                <Badge tone="rust" className="absolute -top-3.5 left-7 w-fit">
+                <Badge tone="teal" className="absolute -top-3.5 left-7 w-fit">
                   {plan.badge}
                 </Badge>
               )}
@@ -55,7 +55,7 @@ export default function PricingPlans() {
               <ul className="mt-8 flex flex-1 flex-col gap-3">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm">
-                    <Check className={cn("mt-0.5 size-4 shrink-0", plan.highlighted ? "text-rust-400" : "text-rust-500")} />
+                    <Check className={cn("mt-0.5 size-4 shrink-0", plan.highlighted ? "text-teal-400" : "text-teal-500")} />
                     <span className={plan.highlighted ? "text-cream-200" : "text-ink-700"}>{f}</span>
                   </li>
                 ))}

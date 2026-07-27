@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -11,6 +12,8 @@ import Button from "@/components/ui/Button";
 import RevealText from "@/components/ui/RevealText";
 import { buildWhatsAppLink, defaultWhatsAppMessage, siteConfig } from "@/data/site";
 import { EASE_PREMIUM } from "@/lib/motion";
+
+const HeroScene = dynamic(() => import("@/components/three/HeroScene"), { ssr: false });
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -39,14 +42,19 @@ export default function Hero() {
     <section ref={sectionRef} className="relative overflow-hidden pb-20 pt-28 sm:pt-32 lg:pb-28 lg:pt-36">
       {/* Ambient background shapes, parallaxed via GSAP ScrollTrigger */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div ref={orbOneRef} className="absolute -top-24 right-[-10%] size-[36rem] rounded-full bg-rust-200/40 blur-3xl" />
-        <div ref={orbTwoRef} className="absolute bottom-0 left-[-15%] size-[28rem] rounded-full bg-olive-200/40 blur-3xl" />
+        <div ref={orbOneRef} className="absolute -top-24 right-[-10%] size-[36rem] rounded-full bg-teal-200/40 blur-3xl" />
+        <div ref={orbTwoRef} className="absolute bottom-0 left-[-15%] size-[28rem] rounded-full bg-gold-200/40 blur-3xl" />
         <svg className="absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden>
           <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
             <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" strokeWidth="1" />
           </pattern>
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
+      </div>
+
+      {/* Procedural 3D centerpiece — desktop only, disabled on mobile for performance/battery */}
+      <div className="pointer-events-none absolute right-[2%] top-1/2 hidden aspect-square w-104 max-w-[36%] -translate-y-1/2 lg:block xl:w-120">
+        <HeroScene className="h-full w-full" />
       </div>
 
       <Container className="relative">
@@ -56,7 +64,7 @@ export default function Hero() {
           transition={{ duration: 0.6, ease: EASE_PREMIUM }}
           className="inline-flex items-center gap-2 rounded-full border border-ink-300 bg-cream-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-700 backdrop-blur"
         >
-          <span className="flex size-1.5 rounded-full bg-olive-500" />
+          <span className="flex size-1.5 rounded-full bg-gold-500" />
           Trusted by 200+ Businesses Worldwide
         </motion.div>
 
@@ -65,7 +73,23 @@ export default function Hero() {
           <br />
           <RevealText text="built to " className="text-ink-950" />
           <span className="relative inline-block">
-            <RevealText text="convert." className="italic text-rust-500" />
+            <RevealText text="convert." className="italic text-teal-500" />
+            <motion.svg
+              viewBox="0 0 300 20"
+              className="pointer-events-none absolute -bottom-2 left-0 h-4 w-full sm:-bottom-3 sm:h-5"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <motion.path
+                d="M2 14 C 40 4, 80 18, 120 10 S 200 2, 240 12 S 280 16, 298 8"
+                stroke="var(--color-gold-500)"
+                strokeWidth="4"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.9, ease: EASE_PREMIUM, delay: 1.15 }}
+              />
+            </motion.svg>
           </span>
         </h1>
 
@@ -100,7 +124,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.8 }}
           className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-4"
         >
-          <div className="flex items-center gap-1 text-rust-500">
+          <div className="flex items-center gap-1 text-teal-500">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} className="size-4 fill-current" strokeWidth={0} />
             ))}

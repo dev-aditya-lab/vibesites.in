@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Vibesites on WhatsApp"
-      className="group fixed bottom-6 right-5 z-40 flex items-center gap-3 rounded-full bg-olive-600 py-3.5 pl-3.5 pr-3.5 text-cream-50 shadow-soft-lg sm:bottom-8 sm:right-8"
+      className="group fixed bottom-6 right-5 z-40 flex items-center gap-3 rounded-full bg-gold-600 py-3.5 pl-3.5 pr-3.5 text-cream-50 shadow-soft-lg sm:bottom-8 sm:right-8"
       initial={{ opacity: 0, y: 40, scale: 0.8 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: EASE_PREMIUM, delay: 1.1 }}

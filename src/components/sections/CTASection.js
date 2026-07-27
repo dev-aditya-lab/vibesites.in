@@ -16,7 +16,7 @@ export default function CTASection({
   return (
     <section className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-rust-100/60 blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-100/60 blur-3xl" />
       </div>
       <Container>
         <motion.div
@@ -27,7 +27,7 @@ export default function CTASection({
           transition={defaultTransition()}
           className="mx-auto flex max-w-3xl flex-col items-center rounded-[2.5rem] border border-ink-200 bg-cream-50 px-8 py-16 text-center shadow-soft-lg sm:px-16"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-rust-600">{eyebrow}</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-teal-600">{eyebrow}</span>
           <h2 className="mt-5 text-display-sm text-balance font-medium text-ink-950">
             <RevealText text={title} />
           </h2>

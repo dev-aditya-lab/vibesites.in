@@ -9,7 +9,7 @@ import { EASE_PREMIUM } from "@/lib/motion";
 const MotionLink = motion.create(Link);
 
 const variants = {
-  primary: "bg-rust-500 text-cream-50 hover:bg-rust-600",
+  primary: "bg-teal-500 text-cream-50 hover:bg-teal-600",
   secondary: "bg-transparent text-ink-900 border border-ink-300 hover:border-ink-900",
   inverse: "bg-cream-100 text-ink-900 hover:bg-cream-200",
   ghost: "bg-transparent text-ink-900 hover:bg-ink-100",

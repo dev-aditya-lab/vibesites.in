@@ -30,9 +30,9 @@ export default function IndustriesBand() {
               key={industry.name}
               variants={fadeUp}
               transition={defaultTransition()}
-              className="flex flex-col items-center gap-4 rounded-2xl border border-ink-200 bg-cream-50 px-4 py-8 text-center transition-colors duration-300 hover:border-olive-300"
+              className="flex flex-col items-center gap-4 rounded-2xl border border-ink-200 bg-cream-50 px-4 py-8 text-center transition-colors duration-300 hover:border-gold-300"
             >
-              <div className="flex size-12 items-center justify-center rounded-full bg-olive-50 text-olive-700">
+              <div className="flex size-12 items-center justify-center rounded-full bg-gold-50 text-gold-700">
                 <DynamicIcon name={industry.icon} className="size-6" />
               </div>
               <p className="text-sm font-medium text-ink-800">{industry.name}</p>

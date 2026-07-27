@@ -42,7 +42,7 @@ export default async function PortfolioDetailPage({ params }) {
             All projects
           </Link>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Badge tone="rust">{project.category}</Badge>
+            <Badge tone="teal">{project.category}</Badge>
             <span className="text-sm text-ink-500">{project.year}</span>
           </div>
           <h1 className="mt-6 max-w-4xl text-balance text-display-md font-medium text-ink-950">{project.title}</h1>
@@ -93,7 +93,7 @@ export default async function PortfolioDetailPage({ params }) {
                 {project.stats.map((stat) => (
                   <div key={stat.label} className="flex items-baseline justify-between border-b border-ink-800 pb-3">
                     <span className="text-sm text-cream-400">{stat.label}</span>
-                    <span className="font-display text-xl text-rust-400">{stat.value}</span>
+                    <span className="font-display text-xl text-teal-400">{stat.value}</span>
                   </div>
                 ))}
               </div>
@@ -116,7 +116,7 @@ export default async function PortfolioDetailPage({ params }) {
         <Container>
           <Link
             href={`/portfolio/${next.slug}`}
-            className="group flex items-center justify-between gap-6 rounded-2xl border border-ink-200 bg-cream-50 p-8 transition-colors hover:border-rust-300"
+            className="group flex items-center justify-between gap-6 rounded-2xl border border-ink-200 bg-cream-50 p-8 transition-colors hover:border-teal-300"
           >
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-ink-500">Next project</p>

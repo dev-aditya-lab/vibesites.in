@@ -2,8 +2,10 @@
 
 /* ==========================================================================
    VIBESITES DESIGN TOKENS
-   A warm, editorial palette: ink (near-black), cream (warm paper), rust
-   (primary accent), olive (secondary accent). No cyan/magenta/neon.
+   60-30-10: cream (dominant neutral, ~60%), ink (secondary neutral — text,
+   dark surfaces, ~30%), teal (the one confident accent — CTAs & highlights,
+   ~10%). Brass is a quiet tertiary support tone, never used as a CTA color.
+   No orange, no cyan/magenta/neon, no SaaS blue-purple gradients.
    ========================================================================== */
 
 @theme {
@@ -33,31 +35,31 @@
   --color-cream-900: #453b2b;
   --color-cream-950: #262115;
 
-  /* ---- Color: Rust (primary accent — CTAs, highlights) ---- */
-  --color-rust-50: #fdf3ee;
-  --color-rust-100: #fce3d6;
-  --color-rust-200: #f8c4ac;
-  --color-rust-300: #f1a07c;
-  --color-rust-400: #e37b4e;
-  --color-rust-500: #c4592b;
-  --color-rust-600: #a6461f;
-  --color-rust-700: #83371a;
-  --color-rust-800: #632a15;
-  --color-rust-900: #401b0d;
-  --color-rust-950: #251007;
+  /* ---- Color: Teal (the one confident accent — CTAs, highlights) ---- */
+  --color-teal-50: #eef6f5;
+  --color-teal-100: #d2e9e6;
+  --color-teal-200: #a6d3cc;
+  --color-teal-300: #74b9af;
+  --color-teal-400: #439c90;
+  --color-teal-500: #1f7e72;
+  --color-teal-600: #17655c;
+  --color-teal-700: #14524a;
+  --color-teal-800: #113f3a;
+  --color-teal-900: #0c2b28;
+  --color-teal-950: #071a18;
 
-  /* ---- Color: Olive (secondary accent — tags, variety) ---- */
-  --color-olive-50: #f5f6f0;
-  --color-olive-100: #e7eadb;
-  --color-olive-200: #cdd3b4;
-  --color-olive-300: #afb88a;
-  --color-olive-400: #8e9a65;
-  --color-olive-500: #6e7a49;
-  --color-olive-600: #566038;
-  --color-olive-700: #434a2c;
-  --color-olive-800: #30341f;
-  --color-olive-900: #1e2113;
-  --color-olive-950: #12140b;
+  /* ---- Color: Brass (quiet tertiary support — tags, icon tints) ---- */
+  --color-gold-50: #fbf7ee;
+  --color-gold-100: #f3e8cc;
+  --color-gold-200: #e6cd98;
+  --color-gold-300: #d6af64;
+  --color-gold-400: #c2953f;
+  --color-gold-500: #a97b2e;
+  --color-gold-600: #8a6224;
+  --color-gold-700: #6d4c1d;
+  --color-gold-800: #503817;
+  --color-gold-900: #33240f;
+  --color-gold-950: #1d1408;
 
   /* ---- Fonts ---- */
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -126,12 +128,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::selection {
-  background: var(--color-rust-300);
-  color: var(--color-rust-950);
+  background: var(--color-teal-300);
+  color: var(--color-teal-950);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-rust-500);
+  outline: 2px solid var(--color-teal-500);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -167,7 +169,7 @@ html.lenis, html.lenis body {
 /* Reusable link-underline hover micro-interaction */
 .link-underline {
   position: relative;
-  background-image: linear-gradient(var(--color-rust-500), var(--color-rust-500));
+  background-image: linear-gradient(var(--color-teal-500), var(--color-teal-500));
   background-size: 0% 1px;
   background-position: 0 100%;
   background-repeat: no-repeat;

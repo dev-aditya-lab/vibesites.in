@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import LoadingScreen from "@/components/layout/LoadingScreen";
 import { siteConfig } from "@/data/site";
 
 const fraunces = Fraunces({
@@ -90,6 +91,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="flex min-h-dvh flex-col bg-cream-100 antialiased">
+        <LoadingScreen />
         <SmoothScroll>
           <Header />
           <main className="flex-1">{children}</main>

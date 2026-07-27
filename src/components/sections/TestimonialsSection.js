@@ -10,7 +10,7 @@ import { testimonials } from "@/data/testimonials";
 function TestimonialCard({ t }) {
   return (
     <div className="flex w-[22rem] shrink-0 flex-col gap-5 rounded-2xl border border-ink-200 bg-cream-50 p-8 shadow-soft-sm sm:w-[26rem]">
-      <Quote className="size-7 text-rust-300" strokeWidth={1.5} />
+      <Quote className="size-7 text-teal-300" strokeWidth={1.5} />
       <p className="text-[0.95rem] leading-relaxed text-ink-800">&ldquo;{t.quote}&rdquo;</p>
       <div className="mt-auto flex items-center gap-3 pt-2">
         <Image src={t.avatar} alt={t.name} width={44} height={44} className="rounded-full" />
@@ -20,7 +20,7 @@ function TestimonialCard({ t }) {
             {t.role}, {t.company}
           </p>
         </div>
-        <div className="ml-auto flex gap-0.5 text-rust-500">
+        <div className="ml-auto flex gap-0.5 text-teal-500">
           {Array.from({ length: t.rating }).map((_, i) => (
             <Star key={i} className="size-3.5 fill-current" strokeWidth={0} />
           ))}

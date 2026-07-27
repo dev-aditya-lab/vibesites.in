@@ -48,7 +48,7 @@ export default async function ServiceDetailPage({ params }) {
 
       <section className="relative overflow-hidden pb-16 pt-28 sm:pt-32">
         <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-32 right-[-10%] size-[30rem] rounded-full bg-rust-100/50 blur-3xl" />
+          <div className="absolute -top-32 right-[-10%] size-[30rem] rounded-full bg-teal-100/50 blur-3xl" />
         </div>
         <Container>
           <nav className="mb-8 flex items-center gap-2 text-sm text-ink-500">
@@ -60,7 +60,7 @@ export default async function ServiceDetailPage({ params }) {
           </nav>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr]">
             <div>
-              <div className="flex size-14 items-center justify-center rounded-2xl bg-rust-50 text-rust-600">
+              <div className="flex size-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-600">
                 <DynamicIcon name={service.icon} className="size-7" />
               </div>
               <h1 className="mt-6 text-display-md text-balance font-medium text-ink-950">{service.title}</h1>
@@ -78,7 +78,7 @@ export default async function ServiceDetailPage({ params }) {
 
             <div className="flex flex-col gap-4 rounded-2xl border border-ink-200 bg-cream-50 p-7 shadow-soft-sm">
               <div className="flex items-center gap-3">
-                <Clock className="size-5 text-rust-500" />
+                <Clock className="size-5 text-teal-500" />
                 <div>
                   <p className="text-xs uppercase tracking-wide text-ink-500">Typical turnaround</p>
                   <p className="font-medium text-ink-900">{service.turnaround}</p>
@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({ params }) {
               </div>
               <div className="h-px bg-ink-200" />
               <div className="flex items-center gap-3">
-                <Users className="size-5 text-rust-500" />
+                <Users className="size-5 text-teal-500" />
                 <div>
                   <p className="text-xs uppercase tracking-wide text-ink-500">Ideal for</p>
                   <p className="font-medium text-ink-900">{service.idealFor}</p>
@@ -100,14 +100,14 @@ export default async function ServiceDetailPage({ params }) {
       <section className="border-t border-ink-200 py-20">
         <Container className="grid grid-cols-1 gap-16 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <Badge tone="rust">What&apos;s included</Badge>
+            <Badge tone="teal">What&apos;s included</Badge>
             <h2 className="mt-5 font-display text-display-sm text-balance text-ink-950">
               Everything you need, nothing you don&apos;t.
             </h2>
             <ul className="mt-8 flex flex-col gap-4">
               {service.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3 rounded-xl border border-ink-200 bg-cream-50 p-4">
-                  <Check className="mt-0.5 size-5 shrink-0 text-rust-500" />
+                  <Check className="mt-0.5 size-5 shrink-0 text-teal-500" />
                   <span className="text-ink-800">{feature}</span>
                 </li>
               ))}

@@ -26,7 +26,7 @@ export default function ValuesGrid() {
               transition={defaultTransition()}
               className="rounded-2xl border border-ink-200 bg-cream-50 p-8"
             >
-              <div className="flex size-12 items-center justify-center rounded-xl bg-rust-50 text-rust-600">
+              <div className="flex size-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
                 <DynamicIcon name={value.icon} className="size-6" />
               </div>
               <h3 className="mt-6 font-display text-xl text-ink-900">{value.title}</h3>

@@ -67,7 +67,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex size-9 items-center justify-center rounded-full border border-ink-700 text-cream-300 transition-colors hover:border-rust-400 hover:text-rust-400"
+                  className="flex size-9 items-center justify-center rounded-full border border-ink-700 text-cream-300 transition-colors hover:border-teal-400 hover:text-teal-400"
                 >
                   <Icon className="size-4" strokeWidth={2} />
                 </a>
