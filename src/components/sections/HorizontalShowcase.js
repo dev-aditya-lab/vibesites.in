@@ -61,8 +61,8 @@ export default function HorizontalShowcase() {
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <SectionHeading
               eyebrow="Selected work"
-              title="Results our clients can point to."
-              description="A handful of the businesses we've helped design, build, and grow."
+              title="Concept work that shows how we build."
+              description="Self-initiated projects, built to the same standard as client work — no invented results attached."
               size="sm"
             />
           </div>
@@ -90,6 +90,9 @@ export default function HorizontalShowcase() {
                   <div className="absolute right-5 top-5 flex size-11 -translate-y-2 items-center justify-center rounded-full bg-cream-50 text-ink-900 opacity-0 transition-all duration-400 ease-out group-hover:translate-y-0 group-hover:opacity-100">
                     <ArrowUpRight className="size-5" />
                   </div>
+                  <span className="absolute left-5 top-5 rounded-full bg-cream-50/90 px-2.5 py-1 text-xs font-medium text-ink-700 backdrop-blur-sm">
+                    {project.type}
+                  </span>
                 </div>
                 <div className="mt-5 flex items-start justify-between gap-4">
                   <div>

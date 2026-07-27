@@ -57,6 +57,9 @@ export default function PortfolioGrid() {
                     <div className="absolute right-4 top-4 flex size-10 -translate-y-2 items-center justify-center rounded-full bg-cream-50 text-ink-900 opacity-0 transition-all duration-400 ease-out group-hover:translate-y-0 group-hover:opacity-100">
                       <ArrowUpRight className="size-4" />
                     </div>
+                    <span className="absolute left-4 top-4 rounded-full bg-cream-50/90 px-2.5 py-1 text-xs font-medium text-ink-700 backdrop-blur-sm">
+                      {project.type}
+                    </span>
                   </div>
                   <div className="mt-4 flex items-start justify-between gap-3">
                     <div>

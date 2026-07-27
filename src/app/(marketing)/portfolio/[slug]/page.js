@@ -42,6 +42,7 @@ export default async function PortfolioDetailPage({ params }) {
           </Link>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Badge tone="teal">{project.category}</Badge>
+            <Badge tone="outline">{project.type}</Badge>
             <span className="text-sm text-ink-500">{project.year}</span>
           </div>
           <h1 className="mt-6 max-w-4xl text-balance text-display-md font-medium text-ink-950">{project.title}</h1>
@@ -59,23 +60,23 @@ export default async function PortfolioDetailPage({ params }) {
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-[1.4fr_1fr]">
           <div className="flex flex-col gap-12">
             <div>
-              <h2 className="font-display text-2xl text-ink-950">The challenge</h2>
-              <p className="mt-4 leading-relaxed text-ink-700">{project.challenge}</p>
+              <h2 className="font-display text-2xl text-ink-950">The brief</h2>
+              <p className="mt-4 leading-relaxed text-ink-700">{project.brief}</p>
             </div>
             <div>
               <h2 className="font-display text-2xl text-ink-950">Our approach</h2>
               <p className="mt-4 leading-relaxed text-ink-700">{project.approach}</p>
             </div>
             <div>
-              <h2 className="font-display text-2xl text-ink-950">The result</h2>
-              <p className="mt-4 leading-relaxed text-ink-700">{project.result}</p>
+              <h2 className="font-display text-2xl text-ink-950">What we focused on</h2>
+              <p className="mt-4 leading-relaxed text-ink-700">{project.focus}</p>
             </div>
           </div>
 
           <aside className="flex flex-col gap-6">
             <div className="rounded-2xl border border-ink-200 bg-cream-50 p-7">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-500">Client</h3>
-              <p className="mt-2 font-display text-lg text-ink-900">{project.client}</p>
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-500">Project type</h3>
+              <p className="mt-2 font-display text-lg text-ink-900">{project.type}</p>
               <h3 className="mt-6 text-xs font-semibold uppercase tracking-widest text-ink-500">Services</h3>
               <div className="mt-2 flex flex-wrap gap-2">
                 {project.services.map((s) => (
@@ -87,9 +88,9 @@ export default async function PortfolioDetailPage({ params }) {
             </div>
 
             <div className="rounded-2xl bg-ink-950 p-7">
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-500">Results at a glance</h3>
+              <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-500">Project highlights</h3>
               <div className="mt-4 grid grid-cols-1 gap-4">
-                {project.stats.map((stat) => (
+                {project.highlights.map((stat) => (
                   <div key={stat.label} className="flex items-baseline justify-between border-b border-ink-800 pb-3">
                     <span className="text-sm text-cream-400">{stat.label}</span>
                     <span className="font-display text-xl text-teal-400">{stat.value}</span>
