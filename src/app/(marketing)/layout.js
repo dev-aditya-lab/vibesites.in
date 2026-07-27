@@ -56,9 +56,9 @@ export const metadata = {
     description: siteConfig.description,
     images: [
       {
-        url: "/vibesites-og.jpeg",
-        width: 1424,
-        height: 752,
+        url: "/vibesites-og.jpg",
+        width: 1200,
+        height: 630,
         alt: `${siteConfig.name} — Web & App Development Agency`,
       },
     ],
@@ -67,7 +67,7 @@ export const metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} — Web & App Development Agency`,
     description: siteConfig.description,
-    images: ["/vibesites-og.jpeg"],
+    images: ["/vibesites-og.jpg"],
   },
   robots: {
     index: true,
