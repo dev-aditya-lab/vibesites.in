@@ -24,6 +24,7 @@ export default function Hero() {
 
   useGSAP(
     () => {
+      // Scroll-linked parallax — the two properties below (y) are driven by scroll position.
       gsap.to(orbOneRef.current, {
         y: 160,
         ease: "none",
@@ -33,6 +34,26 @@ export default function Hero() {
         y: -100,
         ease: "none",
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: true },
+      });
+
+      // Continuous idle drift — always running, independent of scroll, so the
+      // background never sits still even before the visitor interacts at all.
+      gsap.to(orbOneRef.current, {
+        x: 50,
+        scale: 1.1,
+        duration: 9,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+      });
+      gsap.to(orbTwoRef.current, {
+        x: -40,
+        scale: 1.12,
+        duration: 11,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        delay: 0.6,
       });
     },
     { scope: sectionRef }

@@ -26,10 +26,12 @@ export default function PricingPlans() {
               key={plan.key}
               variants={fadeUp}
               transition={defaultTransition()}
+              whileHover={{ scale: 1.025 }}
+              whileTap={{ scale: 0.98 }}
               className={cn(
                 "relative flex flex-col rounded-2xl border p-7",
                 plan.highlighted
-                  ? "border-teal-400 bg-ink-950 text-cream-100 shadow-soft-xl lg:-translate-y-3"
+                  ? "border-teal-400 bg-ink-950 text-cream-100 shadow-soft-xl lg:-mt-3"
                   : "border-ink-200 bg-cream-50"
               )}
             >

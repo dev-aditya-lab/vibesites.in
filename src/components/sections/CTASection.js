@@ -1,6 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MessageCircle } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -8,15 +12,34 @@ import RevealText from "@/components/ui/RevealText";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/data/site";
 import { fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
 export default function CTASection({
   eyebrow = "Let's build something",
   title = "Ready to make your website work harder?",
   description = "Tell us about your project on WhatsApp and we'll get back to you within a few hours — no forms, no sales scripts.",
 }) {
+  const sectionRef = useRef(null);
+  const blobRef = useRef(null);
+
+  useGSAP(
+    () => {
+      // Parallax depth: the glow drifts at a different rate than the card in front of it.
+      gsap.to(blobRef.current, {
+        y: -120,
+        x: 60,
+        scale: 1.15,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: true },
+      });
+    },
+    { scope: sectionRef }
+  );
+
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
+    <section ref={sectionRef} className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 size-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-100/60 blur-3xl" />
+        <div ref={blobRef} className="absolute left-1/2 top-1/2 size-168 -translate-x-1/2 -translate-y-1/2 rounded-full bg-teal-100/60 blur-3xl" />
       </div>
       <Container>
         <motion.div

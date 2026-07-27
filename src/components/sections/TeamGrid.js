@@ -14,8 +14,14 @@ export default function TeamGrid({ members }) {
       className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4"
     >
       {members.map((member) => (
-        <motion.div key={member.name} variants={fadeUp} transition={defaultTransition()} className="group">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ink-100">
+        <motion.div
+          key={member.name}
+          variants={fadeUp}
+          transition={defaultTransition()}
+          whileHover={{ y: -6 }}
+          className="group"
+        >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-ink-100 shadow-soft-sm transition-shadow duration-500 group-hover:shadow-soft-lg">
             <Image
               src={member.img}
               alt={member.name}

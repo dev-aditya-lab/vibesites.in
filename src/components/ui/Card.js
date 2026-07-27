@@ -12,7 +12,7 @@ export default function Card({ children, className, hover = true, as = "div" }) 
         hover && "transition-shadow duration-500 hover:shadow-soft-lg",
         className
       )}
-      whileHover={hover ? { y: -6 } : undefined}
+      whileHover={hover ? { y: -6, scale: 1.015 } : undefined}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}

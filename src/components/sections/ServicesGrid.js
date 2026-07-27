@@ -7,6 +7,7 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import Button from "@/components/ui/Button";
+import TiltCard from "@/components/ui/TiltCard";
 import { services, popularServiceSlugs, serviceCategories, getServicesByCategory } from "@/data/services";
 import { staggerContainer, fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
 
@@ -40,29 +41,36 @@ export default function ServicesGrid() {
           {serviceCategories.map((category) => {
             const count = getServicesByCategory(category.key).length;
             return (
-              <motion.div key={category.key} variants={fadeUp} transition={defaultTransition()}>
-                <Link
-                  href={`/services#${category.anchor}`}
-                  className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-ink-200 bg-cream-50 p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-teal-300 hover:shadow-soft-lg"
-                >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-teal-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  />
-                  <div className="relative">
-                    <div className="flex size-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
-                      <DynamicIcon name={category.icon} className="size-6" />
+              <motion.div
+                key={category.key}
+                variants={fadeUp}
+                transition={defaultTransition()}
+                whileHover={{ y: -6 }}
+              >
+                <TiltCard maxTilt={7} className="h-full">
+                  <Link
+                    href={`/services#${category.anchor}`}
+                    className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-ink-200 bg-cream-50 p-8 shadow-soft-sm transition-[border-color,box-shadow] duration-500 hover:border-teal-300 hover:shadow-soft-lg"
+                  >
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -right-10 -top-10 size-32 rounded-full bg-teal-50 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                    <div className="relative">
+                      <div className="flex size-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-110">
+                        <DynamicIcon name={category.icon} className="size-6" />
+                      </div>
+                      <h3 className="mt-6 font-display text-xl text-ink-900">{category.label}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-ink-600">{category.description}</p>
                     </div>
-                    <h3 className="mt-6 font-display text-xl text-ink-900">{category.label}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-600">{category.description}</p>
-                  </div>
-                  <div className="relative mt-8 flex items-center justify-between text-sm font-medium text-teal-600">
-                    <span>
-                      {count} service{count !== 1 ? "s" : ""}
-                    </span>
-                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </Link>
+                    <div className="relative mt-8 flex items-center justify-between text-sm font-medium text-teal-600">
+                      <span>
+                        {count} service{count !== 1 ? "s" : ""}
+                      </span>
+                      <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+                  </Link>
+                </TiltCard>
               </motion.div>
             );
           })}
