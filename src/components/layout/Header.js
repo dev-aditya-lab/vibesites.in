@@ -110,7 +110,7 @@ export default function Header() {
               <MessageCircle className="size-4" strokeWidth={2.25} />
               WhatsApp Us
             </Button>
-            <Button href="/contact" variant="primary" size="md">
+            <Button href="/quote" variant="primary" size="md">
               Get a Quote
             </Button>
           </div>
@@ -172,7 +172,7 @@ export default function Header() {
                   <MessageCircle className="size-4" strokeWidth={2.25} />
                   WhatsApp Us
                 </Button>
-                <Button href="/contact" variant="primary" className="w-full">
+                <Button href="/quote" variant="primary" className="w-full">
                   Get a Quote
                 </Button>
               </div>

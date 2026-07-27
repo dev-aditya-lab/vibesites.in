@@ -2,7 +2,7 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Accordion from "@/components/ui/Accordion";
 import PageHero from "@/components/sections/PageHero";
-import PricingPlans from "@/components/sections/PricingPlans";
+import PricingConversion from "@/components/sections/PricingConversion";
 import PricingComparisonTable from "@/components/sections/PricingComparisonTable";
 import CTASection from "@/components/sections/CTASection";
 import { pricingFaqs } from "@/data/pricing";
@@ -23,7 +23,7 @@ export default function PricingPage() {
         description="One-time, project-based plans — pick what fits, know exactly what's included, and pay nothing recurring unless you want ongoing support."
         align="center"
       />
-      <PricingPlans />
+      <PricingConversion />
       <PricingComparisonTable />
 
       <section className="border-t border-ink-200 py-24 lg:py-32">

@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MessageCircle, ArrowRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import RevealText from "@/components/ui/RevealText";
-import { buildWhatsAppLink, defaultWhatsAppMessage, siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import { EASE_PREMIUM } from "@/lib/motion";
 
 const HeroScene = dynamic(() => import("@/components/three/HeroScene"), { ssr: false });
@@ -130,9 +130,8 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.65 }}
           className="mt-10 flex flex-wrap items-center gap-4"
         >
-          <Button href={buildWhatsAppLink(defaultWhatsAppMessage)} external size="lg" icon={false}>
-            <MessageCircle className="size-5" strokeWidth={2.25} />
-            Chat on WhatsApp
+          <Button href="/contact" size="lg">
+            Start your project
           </Button>
           <Button href="/portfolio" variant="secondary" size="lg">
             See our work

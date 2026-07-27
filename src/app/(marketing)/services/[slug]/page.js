@@ -6,6 +6,8 @@ import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import DynamicIcon from "@/components/ui/DynamicIcon";
 import CTASection from "@/components/sections/CTASection";
+import SectionHeading from "@/components/ui/SectionHeading";
+import QuoteForm from "@/components/sections/QuoteForm";
 import { services, getServiceBySlug, serviceCategories } from "@/data/services";
 import { buildWhatsAppLink } from "@/data/site";
 
@@ -66,10 +68,7 @@ export default async function ServiceDetailPage({ params }) {
               <h1 className="mt-6 text-display-md text-balance font-medium text-ink-950">{service.title}</h1>
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">{service.description}</p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <Button href={buildWhatsAppLink(`Hi! I'd like a quote for ${service.title}.`)} external icon={false}>
-                  <MessageCircle className="size-4" strokeWidth={2.25} />
-                  Get a quote on WhatsApp
-                </Button>
+                <Button href="#get-quote">Get a quote for this service</Button>
                 <Button href="/pricing" variant="secondary">
                   See pricing
                 </Button>
@@ -151,6 +150,20 @@ export default async function ServiceDetailPage({ params }) {
                 </ul>
               </div>
             )}
+          </div>
+        </Container>
+      </section>
+
+      <section id="get-quote" className="scroll-mt-28 border-t border-ink-200 bg-cream-200/50 py-20">
+        <Container className="mx-auto max-w-2xl">
+          <SectionHeading
+            eyebrow="Get started"
+            title={`Get a fixed quote for ${service.title}.`}
+            description="Tell us a bit about your business and timeline — we'll follow up with clear scope and pricing."
+            align="center"
+          />
+          <div className="mt-10">
+            <QuoteForm defaultServiceSlug={service.slug} sourcePage={`/services/${service.slug}`} />
           </div>
         </Container>
       </section>

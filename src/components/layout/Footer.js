@@ -38,19 +38,19 @@ export default function Footer() {
         <div className="flex flex-col items-start justify-between gap-10 border-b border-ink-800 pb-16 lg:flex-row lg:items-end">
           <div className="max-w-xl">
             <h2 className="text-display-sm text-balance font-medium text-cream-50">
-              Have a project in mind? Let&apos;s talk about it on WhatsApp.
+              Have a project in mind? Let&apos;s talk about it.
             </h2>
             <p className="mt-4 text-cream-400">
-              Real answers within a few hours, no bots, no ticket queue — just our team.
+              Real answers within a few hours from our team — no bots, no ticket queue.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
+            <Button href="/contact" variant="inverse" size="lg">
+              Start your project
+            </Button>
             <Button href={buildWhatsAppLink(defaultWhatsAppMessage)} external variant="primary" size="lg" icon={false}>
               <MessageCircle className="size-5" strokeWidth={2.25} />
               Chat on WhatsApp
-            </Button>
-            <Button href="/contact" variant="inverse" size="lg">
-              Contact page
             </Button>
           </div>
         </div>

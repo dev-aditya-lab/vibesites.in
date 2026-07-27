@@ -14,6 +14,7 @@ export const footerNav = {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
+    { label: "Get a Quote", href: "/quote" },
   ],
   services: [
     { label: "Web Design & Development", href: "/services#web" },

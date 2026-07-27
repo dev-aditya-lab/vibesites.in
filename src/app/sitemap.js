@@ -14,6 +14,7 @@ const staticRoutes = [
   "/faq",
   "/blog",
   "/contact",
+  "/quote",
   "/privacy-policy",
   "/terms-of-service",
   "/refund-policy",

@@ -1,16 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, MessageCircle } from "lucide-react";
+import { Check, ArrowDown } from "lucide-react";
 import Container from "@/components/ui/Container";
-import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import { plans } from "@/data/pricing";
-import { buildWhatsAppLink } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { staggerContainer, fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
 
-export default function PricingPlans() {
+export default function PricingPlans({ onSelectPlan }) {
+  const selectPlan = (plan) => {
+    onSelectPlan?.(plan);
+    document.getElementById("get-quote")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <section className="py-8 lg:py-12">
       <Container>
@@ -62,16 +65,25 @@ export default function PricingPlans() {
                   </li>
                 ))}
               </ul>
-              <Button
-                href={buildWhatsAppLink(`Hi! I'd like to get started with the ${plan.name} plan.`)}
-                external
-                variant={plan.highlighted ? "inverse" : "primary"}
-                className="mt-8 w-full"
-                icon={false}
+              <motion.button
+                type="button"
+                onClick={() => selectPlan(plan)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className={cn(
+                  "group relative mt-8 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full px-5 py-3 text-sm font-medium tracking-tight transition-colors duration-300",
+                  plan.highlighted ? "bg-cream-100 text-ink-900 hover:bg-cream-200" : "bg-teal-500 text-cream-50"
+                )}
               >
-                <MessageCircle className="size-4" strokeWidth={2.25} />
-                {plan.cta}
-              </Button>
+                {!plan.highlighted && (
+                  <span
+                    aria-hidden
+                    className="absolute inset-0 origin-left scale-x-0 bg-teal-700 transition-transform duration-500 ease-premium group-hover:scale-x-100"
+                  />
+                )}
+                <span className="relative inline-flex items-center gap-2">{plan.cta}</span>
+                <ArrowDown className="relative size-4 transition-transform duration-300 group-hover:translate-y-0.5" strokeWidth={2.25} />
+              </motion.button>
             </motion.div>
           ))}
         </motion.div>

@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function CTASection({
   eyebrow = "Let's build something",
   title = "Ready to make your website work harder?",
-  description = "Tell us about your project on WhatsApp and we'll get back to you within a few hours — no forms, no sales scripts.",
+  description = "Tell us about your project and we'll get back to you within a few hours with a clear next step — no sales scripts.",
 }) {
   const sectionRef = useRef(null);
   const blobRef = useRef(null);
@@ -56,12 +56,12 @@ export default function CTASection({
           </h2>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink-600">{description}</p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button href={buildWhatsAppLink(defaultWhatsAppMessage)} external size="lg" icon={false}>
+            <Button href="/contact" size="lg">
+              Start your project
+            </Button>
+            <Button href={buildWhatsAppLink(defaultWhatsAppMessage)} external variant="secondary" size="lg" icon={false}>
               <MessageCircle className="size-5" strokeWidth={2.25} />
               Chat on WhatsApp
-            </Button>
-            <Button href="/contact" variant="secondary" size="lg">
-              Contact form
             </Button>
           </div>
         </motion.div>

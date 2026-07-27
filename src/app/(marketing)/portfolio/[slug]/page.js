@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Badge from "@/components/ui/Badge";
 import CTASection from "@/components/sections/CTASection";
 import { portfolio, getPortfolioBySlug } from "@/data/portfolio";
-import { buildWhatsAppLink } from "@/data/site";
 
 export function generateStaticParams() {
   return portfolio.map((p) => ({ slug: p.slug }));
@@ -99,13 +98,7 @@ export default async function PortfolioDetailPage({ params }) {
               </div>
             </div>
 
-            <Button
-              href={buildWhatsAppLink(`Hi! I saw the ${project.title} case study and want something similar.`)}
-              external
-              className="w-full"
-              icon={false}
-            >
-              <MessageCircle className="size-4" strokeWidth={2.25} />
+            <Button href="/contact" className="w-full">
               Start a similar project
             </Button>
           </aside>

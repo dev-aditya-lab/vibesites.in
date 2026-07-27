@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, AlertCircle, Loader2 } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { services } from "@/data/services";
 import { submitLead } from "@/lib/leads";
 import { EASE_PREMIUM } from "@/lib/motion";
+
+const budgets = ["Under ₹10,000", "₹10,000 – ₹25,000", "₹25,000 – ₹75,000", "₹75,000+", "Not sure yet"];
 
 const inputClasses =
   "w-full rounded-xl border border-ink-300 bg-cream-50 px-4 py-3.5 text-ink-900 placeholder:text-ink-400 transition-colors duration-300 focus:border-teal-500 focus:outline-none";
@@ -13,23 +16,36 @@ const inputClasses =
 const labelClasses = "mb-2 block text-sm font-medium text-ink-700";
 
 /**
- * General-inquiry contact form — kept deliberately short (name, email, phone,
- * message). For project quotes with service/budget/company details, see
- * QuoteForm — the two are separate components on purpose so each can evolve
- * independently.
+ * Project-quote form — used on Pricing and service-detail pages. Carries the
+ * fields an estimate actually needs (service, budget, company, location,
+ * WhatsApp) that the general ContactForm deliberately leaves out.
  */
-export default function ContactForm({ className }) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+export default function QuoteForm({ defaultServiceSlug = "", initialMessage = "", sourcePage, className }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    whatsappNumber: "",
+    company: "",
+    service: defaultServiceSlug,
+    locationText: "",
+    message: initialMessage,
+    budgetRange: "",
+  });
   const [status, setStatus] = useState("idle"); // idle | submitting | success | error
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (initialMessage) setForm((f) => ({ ...f, message: initialMessage }));
+  }, [initialMessage]);
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
 
   const validate = () => {
     const next = {};
     if (!form.name.trim()) next.name = "Please enter your name.";
-    if (!form.email.trim() && !form.phone.trim()) {
-      next.contact = "Add at least one way to reach you — email or phone.";
+    if (!form.email.trim() && !form.phone.trim() && !form.whatsappNumber.trim()) {
+      next.contact = "Add at least one way to reach you — email, phone, or WhatsApp number.";
     }
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       next.email = "That email doesn't look right.";
@@ -47,13 +63,18 @@ export default function ContactForm({ className }) {
         name: form.name,
         email: form.email,
         phone: form.phone,
+        whatsappNumber: form.whatsappNumber,
+        company: form.company,
+        locationText: form.locationText,
         message: form.message,
-        sourcePage: "/contact",
-        formType: "contact",
+        budgetRange: form.budgetRange,
+        serviceSlugs: form.service ? [form.service] : [],
+        sourcePage,
+        formType: "quote",
       });
       setStatus("success");
     } catch (err) {
-      console.error("Contact submission failed:", err);
+      console.error("Quote submission failed:", err);
       setStatus("error");
     }
   };
@@ -91,7 +112,7 @@ export default function ContactForm({ className }) {
         <div>
           <h3 className="font-display text-xl text-ink-900">Got it — thank you.</h3>
           <p className="mt-2 text-sm leading-relaxed text-ink-600">
-            We read every message personally and reply within a few hours during business hours.
+            We'll review your project details and follow up with clear scope and pricing.
           </p>
         </div>
       </motion.div>
@@ -131,23 +152,82 @@ export default function ContactForm({ className }) {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="phone" className={labelClasses}>
-          Phone number
-        </label>
-        <input id="phone" type="tel" value={form.phone} onChange={update("phone")} placeholder="+1 555 123 4567" className={inputClasses} />
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="phone" className={labelClasses}>
+            Phone number
+          </label>
+          <input id="phone" type="tel" value={form.phone} onChange={update("phone")} placeholder="+1 555 123 4567" className={inputClasses} />
+        </div>
+        <div>
+          <label htmlFor="whatsappNumber" className={labelClasses}>
+            WhatsApp number
+          </label>
+          <input
+            id="whatsappNumber"
+            type="tel"
+            value={form.whatsappNumber}
+            onChange={update("whatsappNumber")}
+            placeholder="If different from phone"
+            className={inputClasses}
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="company" className={labelClasses}>
+            Company / brand
+          </label>
+          <input id="company" value={form.company} onChange={update("company")} placeholder="Optional" className={inputClasses} />
+        </div>
+        <div>
+          <label htmlFor="locationText" className={labelClasses}>
+            City / location
+          </label>
+          <input id="locationText" value={form.locationText} onChange={update("locationText")} placeholder="Optional" className={inputClasses} />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="service" className={labelClasses}>
+            Service you need
+          </label>
+          <select id="service" value={form.service} onChange={update("service")} className={inputClasses}>
+            <option value="">Select a service</option>
+            {services.map((s) => (
+              <option key={s.slug} value={s.slug}>
+                {s.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="budget" className={labelClasses}>
+            Estimated budget
+          </label>
+          <select id="budget" value={form.budgetRange} onChange={update("budgetRange")} className={inputClasses}>
+            <option value="">Select a range</option>
+            {budgets.map((b) => (
+              <option key={b} value={b}>
+                {b}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
         <label htmlFor="message" className={labelClasses}>
-          How can we help?
+          Tell us about your project
         </label>
         <textarea
           id="message"
-          rows={5}
+          rows={4}
           value={form.message}
           onChange={update("message")}
-          placeholder="Ask a question, share feedback, or just say hi."
+          placeholder="What are you building, and what does success look like?"
           className={inputClasses}
         />
       </div>
@@ -172,11 +252,8 @@ export default function ContactForm({ className }) {
 
       <Button type="submit" size="lg" icon={false} disabled={status === "submitting"} className="mt-2 w-full sm:w-fit">
         {status === "submitting" ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" strokeWidth={2.25} />}
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {status === "submitting" ? "Sending…" : "Get a quote"}
       </Button>
-      <p className="text-xs text-ink-500">
-        Prefer WhatsApp? You can message us directly from the contact options alongside this form.
-      </p>
     </motion.form>
   );
 }
