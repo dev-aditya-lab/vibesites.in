@@ -3,7 +3,9 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Eye } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
+import CopyButton from "@/components/admin/CopyButton";
 import { LEAD_STATUSES, FORM_TYPE_LABELS } from "@/lib/admin/constants";
 import { bulkUpdateStatus, bulkAddTag, deleteLeads } from "@/lib/admin/actions";
 import { leadsToCsv, downloadCsv } from "@/lib/admin/csv";
@@ -124,7 +126,7 @@ export default function LeadsTable({ leads, total, page, pageSize, queryString }
       )}
 
       <div className="overflow-x-auto rounded-lg border border-ink-200 bg-cream-50">
-        <table className="w-full min-w-230 text-sm">
+        <table className="w-full min-w-260 text-sm">
           <thead>
             <tr className="border-b border-ink-200 text-left text-xs uppercase tracking-wide text-ink-500">
               <th className="w-10 px-4 py-3">
@@ -135,14 +137,16 @@ export default function LeadsTable({ leads, total, page, pageSize, queryString }
               <th className="px-3 py-3">Contact</th>
               <th className="px-3 py-3">Services</th>
               <th className="px-3 py-3">Location</th>
+              <th className="px-3 py-3">Tags</th>
               <th className="px-3 py-3">Status</th>
               <th className="px-3 py-3">Created</th>
+              <th className="px-3 py-3" />
             </tr>
           </thead>
           <tbody>
             {leads.length === 0 && (
               <tr>
-                <td colSpan={8} className="px-4 py-10 text-center text-ink-500">
+                <td colSpan={10} className="px-4 py-10 text-center text-ink-500">
                   No leads match these filters.
                 </td>
               </tr>
@@ -169,17 +173,52 @@ export default function LeadsTable({ leads, total, page, pageSize, queryString }
                   </span>
                 </td>
                 <td className="px-3 py-3 text-ink-700">
-                  {lead.email && <p>{lead.email}</p>}
-                  {lead.phone && <p className="text-xs text-ink-500">{lead.phone}</p>}
+                  {lead.email && (
+                    <p className="flex items-center gap-1">
+                      {lead.email}
+                      <CopyButton value={lead.email} label="email" />
+                    </p>
+                  )}
+                  {lead.phone && (
+                    <p className="flex items-center gap-1 text-xs text-ink-500">
+                      {lead.phone}
+                      <CopyButton value={lead.phone} label="phone number" />
+                    </p>
+                  )}
                 </td>
                 <td className="px-3 py-3 text-ink-700">
                   {(lead.lead_services ?? []).map((ls) => ls.service?.name).filter(Boolean).join(", ") || "—"}
                 </td>
                 <td className="px-3 py-3 text-ink-700">{lead.location_text || "—"}</td>
                 <td className="px-3 py-3">
+                  <div className="flex flex-wrap gap-1">
+                    {(lead.lead_tags ?? []).length === 0 && <span className="text-ink-400">—</span>}
+                    {(lead.lead_tags ?? []).slice(0, 2).map((lt) => (
+                      <span
+                        key={lt.tag?.id}
+                        className="inline-flex items-center rounded-full border border-gold-300 bg-gold-50 px-2 py-0.5 text-xs font-medium text-gold-800"
+                      >
+                        {lt.tag?.name}
+                      </span>
+                    ))}
+                    {(lead.lead_tags ?? []).length > 2 && (
+                      <span className="text-xs text-ink-500">+{lead.lead_tags.length - 2}</span>
+                    )}
+                  </div>
+                </td>
+                <td className="px-3 py-3">
                   <StatusBadge status={lead.status} />
                 </td>
                 <td className="px-3 py-3 text-ink-500">{new Date(lead.created_at).toLocaleDateString()}</td>
+                <td className="px-3 py-3">
+                  <Link
+                    href={`/admin/leads/${lead.id}`}
+                    className="inline-flex items-center gap-1.5 rounded-md border border-ink-200 px-2.5 py-1.5 text-xs font-medium text-ink-700 hover:border-teal-300 hover:text-teal-700"
+                  >
+                    <Eye className="size-3.5" />
+                    View
+                  </Link>
+                </td>
               </tr>
             ))}
           </tbody>

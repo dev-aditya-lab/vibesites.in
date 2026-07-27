@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import StatusBadge from "@/components/admin/StatusBadge";
+import CopyButton from "@/components/admin/CopyButton";
 import { LEAD_STATUSES, FORM_TYPE_LABELS } from "@/lib/admin/constants";
 import {
   updateLeadStatus,
@@ -60,9 +61,9 @@ export default function LeadDetail({ lead, allServices }) {
 
   const infoRows = [
     ["Form", FORM_TYPE_LABELS[lead.form_type] ?? lead.form_type],
-    ["Email", lead.email],
-    ["Phone", lead.phone],
-    ["WhatsApp", lead.whatsapp_number],
+    ["Email", lead.email, true],
+    ["Phone", lead.phone, true],
+    ["WhatsApp", lead.whatsapp_number, true],
     ["Company", lead.company],
     ["Location (submitted)", lead.location_text],
     ["Budget", lead.budget_range],
@@ -75,10 +76,13 @@ export default function LeadDetail({ lead, allServices }) {
         <div className="rounded-lg border border-ink-200 bg-cream-50 p-5">
           <p className="text-sm font-semibold text-ink-900">Submitted details</p>
           <dl className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {infoRows.map(([label, value]) => (
+            {infoRows.map(([label, value, copyable]) => (
               <div key={label}>
                 <dt className="text-xs uppercase tracking-wide text-ink-500">{label}</dt>
-                <dd className="mt-0.5 text-sm text-ink-900">{value}</dd>
+                <dd className="mt-0.5 flex items-center gap-1.5 text-sm text-ink-900">
+                  {value}
+                  {copyable && <CopyButton value={value} label={label} />}
+                </dd>
               </div>
             ))}
           </dl>
