@@ -1,6 +1,7 @@
 l- launch plan
 g- growth plan
 s- scale plan
+---
 - no footer branding costmization (showig make aby our acency) - l,g
 - no google analyitics -l
 - 15 days support - l

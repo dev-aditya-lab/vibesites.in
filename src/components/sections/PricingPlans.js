@@ -92,7 +92,7 @@ export default function PricingPlans({ onSelectPlan }) {
                 {plan.lockedFeatures && (
                   <>
                     <li className="mt-2 border-t border-ink-200/70 pt-4 text-xs font-semibold uppercase tracking-wide text-ink-400">
-                      Unlocks with Growth
+                      Unlocks with {plan.lockedUnlocksWith || "the next plan"}
                     </li>
                     {plan.lockedFeatures.map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm opacity-60">
