@@ -6,7 +6,7 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { plans, comparisonRows } from "@/data/pricing";
 import { cn } from "@/lib/utils";
-import { staggerContainer, fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
+import { fadeUp, viewportOnce, defaultTransition } from "@/lib/motion";
 
 function Cell({ value }) {
   if (value === true) return <Check className="mx-auto size-5 text-gold-600" />;
@@ -44,14 +44,9 @@ export default function PricingComparisonTable() {
                 ))}
               </tr>
             </thead>
-            <motion.tbody variants={staggerContainer(0.04)} initial="hidden" whileInView="visible" viewport={viewportOnce}>
+            <tbody>
               {comparisonRows.map((row, i) => (
-                <motion.tr
-                  key={row.feature}
-                  variants={fadeUp}
-                  transition={defaultTransition()}
-                  className={i % 2 === 0 ? "bg-cream-50" : ""}
-                >
+                <tr key={row.feature} className={i % 2 === 0 ? "bg-cream-50" : ""}>
                   <td className="rounded-l-xl py-4 pl-4 text-sm font-medium text-ink-800">{row.feature}</td>
                   <td className="py-4 text-center">
                     <Cell value={row.launch} />
@@ -65,9 +60,9 @@ export default function PricingComparisonTable() {
                   <td className="rounded-r-xl py-4 pr-4 text-center">
                     <Cell value={row.enterprise} />
                   </td>
-                </motion.tr>
+                </tr>
               ))}
-            </motion.tbody>
+            </tbody>
           </table>
         </motion.div>
       </Container>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ArrowDown } from "lucide-react";
+import { Check, ArrowDown, Lock, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Badge from "@/components/ui/Badge";
 import { plans } from "@/data/pricing";
@@ -22,7 +22,7 @@ export default function PricingPlans({ onSelectPlan }) {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:items-start"
         >
           {plans.map((plan) => (
             <motion.div
@@ -39,13 +39,21 @@ export default function PricingPlans({ onSelectPlan }) {
               )}
             >
               {plan.badge && (
-                <Badge tone="teal" className="absolute -top-3.5 left-7 w-fit">
-                  {plan.badge}
-                </Badge>
+                <div className="absolute -top-3.5 left-7 flex flex-wrap items-center gap-2">
+                  <Badge tone={plan.badgeTone || "teal"} className="w-fit">
+                    {plan.badge}
+                  </Badge>
+                </div>
               )}
+
               <h3 className={cn("font-display text-2xl", plan.highlighted ? "text-cream-50" : "text-ink-900")}>
                 {plan.name}
               </h3>
+              {plan.subBadge && (
+                <p className={cn("mt-1.5 text-xs font-medium", plan.highlighted ? "text-teal-400" : "text-gold-700")}>
+                  ★ {plan.subBadge}
+                </p>
+              )}
               <p className={cn("mt-2 text-sm", plan.highlighted ? "text-cream-400" : "text-ink-600")}>
                 {plan.tagline}
               </p>
@@ -57,14 +65,45 @@ export default function PricingPlans({ onSelectPlan }) {
               <p className={cn("mt-1 text-xs uppercase tracking-wide", plan.highlighted ? "text-cream-500" : "text-ink-500")}>
                 {plan.priceNote} · {plan.bestFor}
               </p>
+              {plan.valueStack && (
+                <p className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-teal-500/15 px-3 py-1 text-xs font-semibold text-teal-400">
+                  <Sparkles className="size-3.5" strokeWidth={2.5} />
+                  {plan.valueStack}
+                </p>
+              )}
+
               <ul className="mt-8 flex flex-1 flex-col gap-3">
+                {plan.everythingIn && (
+                  <li
+                    className={cn(
+                      "-mt-1 mb-1 text-xs font-semibold uppercase tracking-wide",
+                      plan.highlighted ? "text-teal-400" : "text-teal-600"
+                    )}
+                  >
+                    Everything in {plan.everythingIn}, plus:
+                  </li>
+                )}
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm">
                     <Check className={cn("mt-0.5 size-4 shrink-0", plan.highlighted ? "text-teal-400" : "text-teal-500")} />
                     <span className={plan.highlighted ? "text-cream-200" : "text-ink-700"}>{f}</span>
                   </li>
                 ))}
+                {plan.lockedFeatures && (
+                  <>
+                    <li className="mt-2 border-t border-ink-200/70 pt-4 text-xs font-semibold uppercase tracking-wide text-ink-400">
+                      Unlocks with Growth
+                    </li>
+                    {plan.lockedFeatures.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-sm opacity-60">
+                        <Lock className="mt-0.5 size-3.5 shrink-0 text-ink-400" strokeWidth={2.25} />
+                        <span className="text-ink-500">{f}</span>
+                      </li>
+                    ))}
+                  </>
+                )}
               </ul>
+
               <motion.button
                 type="button"
                 onClick={() => selectPlan(plan)}

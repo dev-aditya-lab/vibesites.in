@@ -43,7 +43,7 @@ export default function PricingTeaser() {
               )}
             >
               {plan.badge && (
-                <Badge tone="teal" className="mb-4 w-fit">
+                <Badge tone={plan.badgeTone || "teal"} className="mb-4 w-fit">
                   {plan.badge}
                 </Badge>
               )}
@@ -62,6 +62,16 @@ export default function PricingTeaser() {
                 </span>
               </div>
               <ul className="mt-8 flex flex-1 flex-col gap-3">
+                {plan.everythingIn && (
+                  <li
+                    className={cn(
+                      "-mt-1 mb-1 text-xs font-semibold uppercase tracking-wide",
+                      plan.highlighted ? "text-teal-400" : "text-teal-600"
+                    )}
+                  >
+                    Everything in {plan.everythingIn}, plus:
+                  </li>
+                )}
                 {plan.features.slice(0, 5).map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-sm">
                     <Check
