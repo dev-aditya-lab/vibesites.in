@@ -4,6 +4,7 @@ import Accordion from "@/components/ui/Accordion";
 import PageHero from "@/components/sections/PageHero";
 import PricingConversion from "@/components/sections/PricingConversion";
 import PricingComparisonTable from "@/components/sections/PricingComparisonTable";
+import PricingPolicies from "@/components/sections/PricingPolicies";
 import TechStack from "@/components/sections/TechStack";
 import CTASection from "@/components/sections/CTASection";
 import { pricingFaqs } from "@/data/pricing";
@@ -26,6 +27,7 @@ export default function PricingPage() {
       />
       <PricingConversion />
       <PricingComparisonTable />
+      <PricingPolicies />
       <TechStack />
 
       <section className="border-t border-ink-200 py-24 lg:py-32">

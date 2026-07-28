@@ -178,10 +178,20 @@ export const comparisonRows = [
   { feature: "Dedicated project manager", launch: false, growth: true, scale: true, enterprise: true },
   { feature: "Priority support", launch: false, growth: true, scale: true, enterprise: true },
   { feature: "Training session", launch: false, growth: false, scale: true, enterprise: true },
-  { feature: "Source code ownership", launch: false, growth: true, scale: true, enterprise: true },
+  { feature: "Source code ownership", launch: true, growth: true, scale: true, enterprise: true },
   { feature: "Post-launch support", launch: "15 days", growth: "30 days", scale: "180 days", enterprise: "SLA-backed" },
   { feature: "Future scalability planning", launch: false, growth: false, scale: false, enterprise: true },
   { feature: "Typical turnaround", launch: "5 business days", growth: "3–5 weeks", scale: "6–12 weeks", enterprise: "Fully scoped" },
+];
+
+export const pricingPolicies = [
+  "Additional pages beyond your plan's limit are priced individually — quoted upfront before any work starts.",
+  "Payment terms: 50% advance to start, 50% on project completion.",
+  "Revisions beyond your plan's included rounds are billed separately.",
+  "Removing agency footer branding (Launch & Growth only) is a paid add-on, where applicable.",
+  "Additional business email accounts beyond your plan's limit are billed separately.",
+  "Business email accounts carry ongoing subscription charges — covered during your plan's free maintenance period, billed thereafter.",
+  "A minimum 60-day service tenure is mandatory on all plans.",
 ];
 
 export const pricingFaqs = [
