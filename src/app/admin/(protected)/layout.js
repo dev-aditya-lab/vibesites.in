@@ -9,7 +9,7 @@ export default async function AdminProtectedLayout({ children }) {
 
   return (
     <div className="flex min-h-dvh">
-      <aside className="hidden w-56 shrink-0 border-r border-ink-200 bg-cream-50 sm:flex sm:flex-col">
+      <aside className="no-print hidden w-56 shrink-0 border-r border-ink-200 bg-cream-50 sm:flex sm:flex-col">
         <div className="border-b border-ink-200 px-4 py-4">
           <p className="font-display text-lg text-ink-950">Vibesites</p>
           <p className="text-xs text-ink-500">Admin panel</p>
@@ -29,7 +29,7 @@ export default async function AdminProtectedLayout({ children }) {
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex flex-col gap-3 border-b border-ink-200 bg-cream-50 px-4 py-3 sm:hidden">
+        <header className="no-print flex flex-col gap-3 border-b border-ink-200 bg-cream-50 px-4 py-3 sm:hidden">
           <div className="flex items-center justify-between">
             <p className="font-display text-lg text-ink-950">Vibesites Admin</p>
             <form action={signOut}>
@@ -50,7 +50,7 @@ export default async function AdminProtectedLayout({ children }) {
             ))}
           </nav>
         </header>
-        <main className="flex-1 overflow-x-hidden p-4 sm:p-8">{children}</main>
+        <main className="flex-1 overflow-x-hidden p-4 print:overflow-visible print:p-0 sm:p-8">{children}</main>
       </div>
     </div>
   );

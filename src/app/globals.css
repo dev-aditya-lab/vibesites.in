@@ -183,3 +183,33 @@ html.lenis, html.lenis body {
 .text-balance {
   text-wrap: balance;
 }
+
+/* Print-to-PDF isolation: used by admin document generators (e.g. Agreement
+   Generator) to print only the designated area via window.print(). Elements
+   are removed with display:none (not visibility) so they don't leave behind
+   empty layout space — .no-print must be applied to every sibling of the
+   print target, including the admin shell's sidebar/header. */
+@page {
+  size: A4;
+  margin: 16mm 14mm;
+}
+@media print {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-area {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+}
