@@ -9,6 +9,7 @@ export const plans = [
     bestFor: "New businesses & personal brands testing the waters",
     cta: "Start with Launch",
     highlighted: false,
+    stack: ["HTML5", "CSS3", "JavaScript"],
     features: [
       "Up to 5 pages",
       "Premium template, fully brand-customized",
@@ -44,6 +45,7 @@ export const plans = [
     subBadge: "Recommended by 70% of clients",
     valueStack: "₹24,500+ worth of features included",
     everythingIn: "Launch",
+    stack: ["React", "Next.js", "JavaScript", "Firebase","Supabase" ],
     features: [
       "Up to 15 pages",
       "100% custom UI design — no templates",
@@ -74,6 +76,7 @@ export const plans = [
     badge: "Best Value",
     badgeTone: "gold",
     everythingIn: "Growth",
+    stack: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "Supabase"],
     features: [
       "Unlimited core pages",
       "1:1 business strategy session",
@@ -101,6 +104,7 @@ export const plans = [
     cta: "Talk to us",
     highlighted: false,
     everythingIn: "Scale",
+    stack: ["React", "Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Supabase", "Firebase"],
     features: [
       "Full business strategy & discovery workshop",
       "Dedicated project & design team",

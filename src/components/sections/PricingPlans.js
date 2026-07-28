@@ -104,6 +104,39 @@ export default function PricingPlans({ onSelectPlan }) {
                 )}
               </ul>
 
+              {plan.stack && (
+                <div
+                  className={cn(
+                    "mt-6 border-t pt-4",
+                    plan.highlighted ? "border-cream-500/20" : "border-ink-200"
+                  )}
+                >
+                  <p
+                    className={cn(
+                      "mb-2.5 text-xs font-semibold uppercase tracking-wide",
+                      plan.highlighted ? "text-cream-500" : "text-ink-500"
+                    )}
+                  >
+                    Built with
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {plan.stack.map((tech) => (
+                      <span
+                        key={tech}
+                        className={cn(
+                          "rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide",
+                          plan.highlighted
+                            ? "bg-cream-100/10 text-cream-200 ring-1 ring-inset ring-cream-100/20"
+                            : "bg-cream-100 text-ink-600 ring-1 ring-inset ring-ink-200"
+                        )}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <motion.button
                 type="button"
                 onClick={() => selectPlan(plan)}

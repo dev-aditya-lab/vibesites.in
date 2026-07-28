@@ -46,6 +46,61 @@ export const clientLogos = [
   "Wavelength Studio",
 ];
 
+export const techStack = [
+  {
+    category: "Frontend",
+    icon: "Code2",
+    description: "Fast, interactive and beautiful user experiences.",
+    items: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js"],
+  },
+  {
+    category: "Backend",
+    icon: "Server",
+    description: "Robust and scalable server solutions.",
+    items: ["Node.js", "Express"],
+  },
+  {
+    category: "Database & Cloud",
+    icon: "Database",
+    description: "Secure, reliable and high-performance data.",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Firebase"],
+  },
+  {
+    category: "Tooling & Delivery",
+    icon: "Rocket",
+    description: "Modern workflows for speed, quality and reliability.",
+    items: ["Git & GitHub", "Vercel", "REST & GraphQL APIs"],
+  },
+];
+
+export const techValueProps = [
+  {
+    title: "Clean & Secure Code",
+    icon: "ShieldCheck",
+    description: "Best practices for performance and security.",
+  },
+  {
+    title: "Scalable Architecture",
+    icon: "Zap",
+    description: "Built to grow with your business, effortlessly.",
+  },
+  {
+    title: "Performance First",
+    icon: "Gauge",
+    description: "Optimized for speed, SEO and conversions.",
+  },
+  {
+    title: "Reliable & Maintainable",
+    icon: "Lock",
+    description: "Easy to manage, update and scale.",
+  },
+  {
+    title: "Ongoing Support",
+    icon: "Headphones",
+    description: "We're here even after your project goes live.",
+  },
+];
+
 export const industries = [
   { name: "Startups", icon: "Rocket" },
   { name: "E-Commerce & Retail", icon: "ShoppingBag" },

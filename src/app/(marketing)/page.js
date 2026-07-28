@@ -3,6 +3,7 @@ import LogoMarquee from "@/components/sections/LogoMarquee";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import StatsBand from "@/components/sections/StatsBand";
 import ProcessSteps from "@/components/sections/ProcessSteps";
+import TechStack from "@/components/sections/TechStack";
 import HorizontalShowcase from "@/components/sections/HorizontalShowcase";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import PricingTeaser from "@/components/sections/PricingTeaser";
@@ -25,6 +26,7 @@ export default function Home() {
       <ServicesGrid />
       <StatsBand />
       <ProcessSteps />
+      <TechStack />
       <HorizontalShowcase />
       <Container>
         <SVGDivider stroke="var(--color-teal-500)" />
