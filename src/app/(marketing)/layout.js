@@ -6,6 +6,7 @@ import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import LoadingScreen from "@/components/layout/LoadingScreen";
 import { siteConfig } from "@/data/site";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -103,6 +104,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${fraunces.variable} ${manrope.variable}`}>
       <head>
+      <meta name="facebook-domain-verification" content="sc9x35goq85a674p8hax2wq2uyrc0f" />
+      
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -116,6 +119,7 @@ export default function RootLayout({ children }) {
           <Footer />
           <WhatsAppButton />
         </SmoothScroll>
+              <GoogleAnalytics gaId="G-FX5HP8HVS4" />
       </body>
     </html>
   );
