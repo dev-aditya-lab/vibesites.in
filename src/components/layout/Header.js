@@ -47,19 +47,25 @@ export default function Header() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled || menuOpen || servicesOpen ? "bg-cream-100/90 shadow-soft-sm backdrop-blur-md" : "bg-transparent"
-      )}
+      className={cn("fixed inset-x-0 top-0 z-50 pt-3 transition-colors duration-500 sm:pt-4", menuOpen && "bg-cream-100")}
       onMouseLeave={scheduleCloseServices}
     >
       <Container>
-        <div className="flex h-20 items-center justify-between">
+        <div
+          className={cn(
+            "flex h-16 items-center justify-between gap-4 rounded-full border px-4 transition-all duration-500 lg:px-4 xl:px-6",
+            menuOpen
+              ? "border-transparent bg-cream-100 shadow-none"
+              : scrolled || servicesOpen
+                ? "border-ink-200/70 bg-cream-50/95 shadow-soft-md backdrop-blur-md"
+                : "border-cream-50/60 bg-cream-50/70 shadow-soft-sm backdrop-blur-md"
+          )}
+        >
           <Link href="/" className="relative z-10">
             <Logo />
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex">
+          <nav className="hidden items-center gap-5 xl:gap-8 lg:flex">
             {primaryNav.map((item) => {
               const active = pathname === item.href;
 
@@ -99,7 +105,7 @@ export default function Header() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 xl:gap-3 lg:flex">
             <Button
               href={buildWhatsAppLink(defaultWhatsAppMessage)}
               external
@@ -108,7 +114,7 @@ export default function Header() {
               icon={false}
             >
               <MessageCircle className="size-4" strokeWidth={2.25} />
-              WhatsApp Us
+              <span className="hidden xl:inline">WhatsApp Us</span>
             </Button>
             <Button href="/quote" variant="primary" size="md">
               Get a Quote

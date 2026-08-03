@@ -1,158 +1,151 @@
 "use client";
 
 import { useRef } from "react";
-import dynamic from "next/dynamic";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Star } from "lucide-react";
+import { Star, ArrowUpRight } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import RevealText from "@/components/ui/RevealText";
 import { siteConfig } from "@/data/site";
 import { EASE_PREMIUM } from "@/lib/motion";
 
-const HeroScene = dynamic(() => import("@/components/three/HeroScene"), { ssr: false });
-
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const teamStat = siteConfig.stats.find((s) => s.label === "Team members");
+const countriesStat = siteConfig.stats.find((s) => s.label === "Countries served");
 
 export default function Hero() {
   const sectionRef = useRef(null);
-  const orbOneRef = useRef(null);
-  const orbTwoRef = useRef(null);
+  const imageRef = useRef(null);
 
   useGSAP(
     () => {
-      // Scroll-linked parallax — the two properties below (y) are driven by scroll position.
-      gsap.to(orbOneRef.current, {
-        y: 160,
+      // Slow scroll-linked parallax on the background photo, scrubbed to scroll position.
+      gsap.to(imageRef.current, {
+        y: 90,
+        scale: 1.06,
         ease: "none",
         scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: true },
-      });
-      gsap.to(orbTwoRef.current, {
-        y: -100,
-        ease: "none",
-        scrollTrigger: { trigger: sectionRef.current, start: "top top", end: "bottom top", scrub: true },
-      });
-
-      // Continuous idle drift — always running, independent of scroll, so the
-      // background never sits still even before the visitor interacts at all.
-      gsap.to(orbOneRef.current, {
-        x: 50,
-        scale: 1.1,
-        duration: 9,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-      });
-      gsap.to(orbTwoRef.current, {
-        x: -40,
-        scale: 1.12,
-        duration: 11,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        delay: 0.6,
       });
     },
     { scope: sectionRef }
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pb-20 pt-28 sm:pt-32 lg:pb-28 lg:pt-36">
-      {/* Ambient background shapes, parallaxed via GSAP ScrollTrigger */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div ref={orbOneRef} className="absolute -top-24 right-[-10%] size-[36rem] rounded-full bg-teal-200/40 blur-3xl" />
-        <div ref={orbTwoRef} className="absolute bottom-0 left-[-15%] size-[28rem] rounded-full bg-gold-200/40 blur-3xl" />
-        <svg className="absolute inset-0 h-full w-full opacity-[0.05]" aria-hidden>
-          <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="currentColor" strokeWidth="1" />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-dvh items-center overflow-hidden pb-14 pt-24 sm:pt-28 lg:pb-16 lg:pt-28"
+    >
+      {/* Background photo, parallaxed via GSAP ScrollTrigger */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-20">
+        <div ref={imageRef} className="absolute inset-0 scale-105">
+          <Image
+            src="/hero-img1920x1080-laptop.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[75%_center] opacity-45 sm:opacity-70 lg:opacity-100"
+          />
+        </div>
       </div>
 
-      {/* Procedural 3D centerpiece — desktop only, disabled on mobile for performance/battery */}
-      <div className="pointer-events-none absolute right-[2%] top-1/2 hidden aspect-square w-104 max-w-[36%] -translate-y-1/2 lg:block xl:w-120">
-        <HeroScene className="h-full w-full" />
-      </div>
+      {/* Readability scrim — near-opaque on mobile, resolving into a left-to-right
+          fade on desktop so the copy sits on solid ground while the photo's product
+          shots stay visible on the right. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-cream-100/92 to-cream-100/92 lg:bg-linear-to-r lg:from-cream-100 lg:from-40% lg:via-cream-100/55 lg:via-52% lg:to-cream-100/0 lg:to-64%"
+      />
 
       <Container className="relative">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE_PREMIUM }}
-          className="inline-flex items-center gap-2 rounded-full border border-ink-300 bg-cream-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-700 backdrop-blur"
-        >
-          <span className="flex size-1.5 rounded-full bg-gold-500" />
-          Trusted by 200+ Businesses Worldwide
-        </motion.div>
+        <div className="lg:max-w-xl xl:max-w-2xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+            className="inline-flex items-center gap-2 rounded-full border border-ink-300 bg-cream-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ink-700 backdrop-blur"
+          >
+            <Star className="size-3.5 fill-gold-500 text-gold-500" strokeWidth={0} />
+            4.9/5 average rating from 200+ clients
+          </motion.div>
 
-        <h1 className="mt-8 max-w-5xl text-display-xl font-medium text-ink-950">
-          <RevealText text="Websites and apps" />
-          <br />
-          <RevealText text="built to " className="text-ink-950" />
-          <span className="relative inline-block">
-            <RevealText text="convert." className="italic text-teal-500" />
-            <motion.svg
-              viewBox="0 0 300 20"
-              className="pointer-events-none absolute -bottom-2 left-0 h-4 w-full sm:-bottom-3 sm:h-5"
-              fill="none"
-              preserveAspectRatio="none"
+          <h1 className="mt-6 text-display-lg font-medium text-ink-950">
+            <RevealText text="240+ sites shipped." />
+            <br />
+            <RevealText text="All built to " className="text-ink-950" />
+            <span className="relative inline-block">
+              <RevealText text="convert." className="italic text-teal-500" />
+              <motion.svg
+                viewBox="0 0 300 20"
+                className="pointer-events-none absolute -bottom-2 left-0 h-4 w-full sm:-bottom-3 sm:h-5"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                <motion.path
+                  d="M2.5 12 C 37.5 -2, 62.5 24, 95 10 C 127.5 -4, 152.5 24, 185 10 C 217.5 -4, 242.5 24, 275 10 C 285 7, 292.5 6, 297.5 7"
+                  stroke="var(--color-gold-500)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 0.9, ease: EASE_PREMIUM, delay: 1.15 }}
+                />
+              </motion.svg>
+            </span>
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.5 }}
+            className="mt-5 text-lg leading-relaxed text-ink-600 sm:text-xl"
+          >
+            We design and build fast, beautiful websites, online stores, and apps for businesses
+            across {countriesStat.value}
+            {countriesStat.suffix} countries — engineered to turn visitors into customers, not just exist.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.65 }}
+            className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4"
+          >
+            <Button href="/contact" size="lg">
+              Start your project
+            </Button>
+            <Link
+              href="/portfolio"
+              className="link-underline group inline-flex items-center gap-2 text-base font-medium text-ink-900"
             >
-              <motion.path
-                d="M2 14 C 40 4, 80 18, 120 10 S 200 2, 240 12 S 280 16, 298 8"
-                stroke="var(--color-gold-500)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.9, ease: EASE_PREMIUM, delay: 1.15 }}
+              See our work
+              <ArrowUpRight
+                className="size-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                strokeWidth={2.25}
               />
-            </motion.svg>
-          </span>
-        </h1>
+            </Link>
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.5 }}
-          className="mt-8 max-w-xl text-lg leading-relaxed text-ink-600 sm:text-xl"
-        >
-          Vibesites designs and builds fast, beautiful websites, online stores, and mobile apps
-          for businesses that need their site to actually win customers — not just exist.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.65 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
-        >
-          <Button href="/contact" size="lg">
-            Start your project
-          </Button>
-          <Button href="/portfolio" variant="secondary" size="lg">
-            See our work
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.8 }}
-          className="mt-16 flex flex-wrap items-center gap-x-10 gap-y-4"
-        >
-          <div className="flex items-center gap-1 text-teal-500">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="size-4 fill-current" strokeWidth={0} />
-            ))}
-            <span className="ml-2 text-sm font-medium text-ink-700">4.9/5 from 200+ clients</span>
-          </div>
-          <div className="hidden h-6 w-px bg-ink-300 sm:block" />
-          <p className="text-sm font-medium text-ink-700">240+ projects shipped since {siteConfig.foundedYear}</p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE_PREMIUM, delay: 0.8 }}
+            className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-4"
+          >
+            <p className="text-sm font-medium text-ink-700">
+              {teamStat.value}
+              {teamStat.suffix} people on the team
+            </p>
+            <div className="hidden h-6 w-px bg-ink-300 sm:block" />
+            <p className="text-sm font-medium text-ink-700">Building since {siteConfig.foundedYear}</p>
+          </motion.div>
+        </div>
       </Container>
     </section>
   );
