@@ -16,6 +16,13 @@ export const FORM_TYPES = [
 
 export const FORM_TYPE_LABELS = Object.fromEntries(FORM_TYPES.map((f) => [f.value, f.label]));
 
+/** Vibesites-owned products that tag their own leads via `leads.product`
+ * (see supabase/migrations/0011_lead_product.sql). Add a new entry here —
+ * no migration needed — whenever another product starts sending leads. */
+export const PRODUCTS = [{ value: "rewardloop", label: "RewardLoop" }];
+
+export const PRODUCT_LABELS = Object.fromEntries(PRODUCTS.map((p) => [p.value, p.label]));
+
 export const STATUS_STYLES = {
   new: "bg-teal-50 text-teal-700 border-teal-200",
   contacted: "bg-gold-50 text-gold-700 border-gold-200",

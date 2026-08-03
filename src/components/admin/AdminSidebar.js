@@ -1,19 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { navItems } from "@/lib/admin/nav";
 
 export default function AdminSidebar({ isSuperAdmin }) {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const items = isSuperAdmin ? [...navItems, { href: "/admin/admins", label: "Admins" }] : navItems;
 
   return (
     <nav className="flex flex-col gap-1 p-3">
       {items.map((item) => {
-        const active = item.exact ? pathname === item.href : pathname.startsWith(item.href);
+        const [itemPath, itemQuery] = item.href.split("?");
+        const active = itemQuery
+          ? pathname === itemPath && new URLSearchParams(itemQuery).get("product") === searchParams.get("product")
+          : item.exact
+            ? pathname === item.href
+            : pathname.startsWith(item.href) && !searchParams.get("product");
         return (
           <Link
             key={item.href}

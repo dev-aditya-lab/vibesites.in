@@ -1,4 +1,4 @@
-import { LEAD_STATUSES, FORM_TYPES } from "@/lib/admin/constants";
+import { LEAD_STATUSES, FORM_TYPES, PRODUCTS } from "@/lib/admin/constants";
 
 const inputClasses =
   "rounded-md border border-ink-300 bg-cream-50 px-3 py-2 text-sm text-ink-900 focus:border-teal-500 focus:outline-none";
@@ -29,6 +29,20 @@ export default function LeadsFilterBar({ services, locations, tags, current }) {
           {FORM_TYPES.map((f) => (
             <option key={f.value} value={f.value}>
               {f.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <label htmlFor="product" className="text-xs font-medium text-ink-500">
+          Product
+        </label>
+        <select id="product" name="product" defaultValue={current.product} className={inputClasses}>
+          <option value="">All products</option>
+          {PRODUCTS.map((p) => (
+            <option key={p.value} value={p.value}>
+              {p.label}
             </option>
           ))}
         </select>
@@ -104,7 +118,7 @@ export default function LeadsFilterBar({ services, locations, tags, current }) {
       <button type="submit" className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-cream-50 hover:bg-teal-700">
         Apply filters
       </button>
-      {(current.q || current.status || current.service || current.location || current.tag || current.formType) && (
+      {(current.q || current.status || current.service || current.location || current.tag || current.formType || current.product) && (
         <a href="/admin/leads" className="rounded-md border border-ink-300 px-4 py-2 text-sm text-ink-700 hover:bg-cream-200">
           Clear
         </a>

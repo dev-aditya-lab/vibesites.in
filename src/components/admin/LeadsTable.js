@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Eye } from "lucide-react";
 import StatusBadge from "@/components/admin/StatusBadge";
 import CopyButton from "@/components/admin/CopyButton";
-import { LEAD_STATUSES, FORM_TYPE_LABELS } from "@/lib/admin/constants";
+import { LEAD_STATUSES, FORM_TYPE_LABELS, PRODUCT_LABELS } from "@/lib/admin/constants";
 import { bulkUpdateStatus, bulkAddTag, deleteLeads } from "@/lib/admin/actions";
 import { leadsToCsv, downloadCsv } from "@/lib/admin/csv";
 
@@ -168,9 +168,16 @@ export default function LeadsTable({ leads, total, page, pageSize, queryString }
                   {lead.company && <p className="text-xs text-ink-500">{lead.company}</p>}
                 </td>
                 <td className="px-3 py-3">
-                  <span className="inline-flex items-center rounded-full border border-ink-200 bg-cream-100 px-2 py-0.5 text-xs font-medium text-ink-700">
-                    {FORM_TYPE_LABELS[lead.form_type] ?? lead.form_type}
-                  </span>
+                  <div className="flex flex-wrap gap-1">
+                    <span className="inline-flex items-center rounded-full border border-ink-200 bg-cream-100 px-2 py-0.5 text-xs font-medium text-ink-700">
+                      {FORM_TYPE_LABELS[lead.form_type] ?? lead.form_type}
+                    </span>
+                    {lead.product && (
+                      <span className="inline-flex items-center rounded-full border border-teal-200 bg-teal-50 px-2 py-0.5 text-xs font-medium text-teal-700">
+                        {PRODUCT_LABELS[lead.product] ?? lead.product}
+                      </span>
+                    )}
+                  </div>
                 </td>
                 <td className="px-3 py-3 text-ink-700">
                   {lead.email && (

@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import StatusBadge from "@/components/admin/StatusBadge";
 import CopyButton from "@/components/admin/CopyButton";
-import { LEAD_STATUSES, FORM_TYPE_LABELS } from "@/lib/admin/constants";
+import { LEAD_STATUSES, FORM_TYPE_LABELS, PRODUCT_LABELS } from "@/lib/admin/constants";
 import {
   updateLeadStatus,
   addLeadNote,
@@ -61,6 +61,7 @@ export default function LeadDetail({ lead, allServices }) {
 
   const infoRows = [
     ["Form", FORM_TYPE_LABELS[lead.form_type] ?? lead.form_type],
+    ["Product", lead.product ? (PRODUCT_LABELS[lead.product] ?? lead.product) : null],
     ["Email", lead.email, true],
     ["Phone", lead.phone, true],
     ["WhatsApp", lead.whatsapp_number, true],

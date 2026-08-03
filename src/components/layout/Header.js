@@ -9,6 +9,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Logo from "./Logo";
 import MegaMenu from "./MegaMenu";
+import ProductsMenu from "./ProductsMenu";
 import { primaryNav } from "@/data/nav";
 import { buildWhatsAppLink, defaultWhatsAppMessage } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -18,7 +19,9 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const closeTimer = useRef(null);
+  const closeTimerProducts = useRef(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -31,6 +34,7 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setServicesOpen(false);
+    setProductsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -45,10 +49,21 @@ export default function Header() {
     closeTimer.current = setTimeout(() => setServicesOpen(false), 150);
   };
 
+  const openProducts = () => {
+    clearTimeout(closeTimerProducts.current);
+    setProductsOpen(true);
+  };
+  const scheduleCloseProducts = () => {
+    closeTimerProducts.current = setTimeout(() => setProductsOpen(false), 150);
+  };
+
   return (
     <header
       className={cn("fixed inset-x-0 top-0 z-50 pt-3 transition-colors duration-500 sm:pt-4", menuOpen && "bg-cream-100")}
-      onMouseLeave={scheduleCloseServices}
+      onMouseLeave={() => {
+        scheduleCloseServices();
+        scheduleCloseProducts();
+      }}
     >
       <Container>
         <div
@@ -56,7 +71,7 @@ export default function Header() {
             "flex h-16 items-center justify-between gap-4 rounded-full border px-4 transition-all duration-500 lg:px-4 xl:px-6",
             menuOpen
               ? "border-transparent bg-cream-100 shadow-none"
-              : scrolled || servicesOpen
+              : scrolled || servicesOpen || productsOpen
                 ? "border-ink-200/70 bg-cream-50/95 shadow-soft-md backdrop-blur-md"
                 : "border-cream-50/60 bg-cream-50/70 shadow-soft-sm backdrop-blur-md"
           )}
@@ -86,6 +101,34 @@ export default function Header() {
                         className={cn("size-3.5 transition-transform duration-300", servicesOpen && "rotate-180")}
                       />
                     </Link>
+                  </div>
+                );
+              }
+
+              if (item.productsMenu) {
+                return (
+                  <div key={item.href} className="relative" onMouseEnter={openProducts}>
+                    <Link
+                      href={item.href}
+                      aria-expanded={productsOpen}
+                      onFocus={openProducts}
+                      className={cn(
+                        "flex items-center gap-1 text-sm font-medium tracking-tight text-ink-800 transition-colors",
+                        (active || productsOpen) && "text-teal-600"
+                      )}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={cn("size-3.5 transition-transform duration-300", productsOpen && "rotate-180")}
+                      />
+                    </Link>
+                    <AnimatePresence>
+                      {productsOpen && (
+                        <div onMouseEnter={openProducts} onMouseLeave={scheduleCloseProducts}>
+                          <ProductsMenu onNavigate={() => setProductsOpen(false)} />
+                        </div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               }

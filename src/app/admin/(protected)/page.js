@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getDashboardStats } from "@/lib/admin/dashboard-query";
-import { LEAD_STATUSES, FORM_TYPES } from "@/lib/admin/constants";
+import { LEAD_STATUSES, FORM_TYPES, PRODUCTS } from "@/lib/admin/constants";
 
 export const metadata = { title: "Dashboard" };
 
@@ -72,6 +72,23 @@ export default async function AdminDashboardPage() {
             >
               <span className="text-ink-600">{f.label}</span>
               <span className="font-semibold text-ink-950">{stats.byFormType[f.value] ?? 0}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-ink-200 bg-cream-50 p-5">
+        <p className="text-sm font-semibold text-ink-900">By product</p>
+        <p className="mt-1 text-xs text-ink-500">Leads from Vibesites-owned products, kept separate from agency leads.</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          {PRODUCTS.map((p) => (
+            <Link
+              key={p.value}
+              href={`/admin/leads?product=${p.value}`}
+              className="flex items-center gap-2 rounded-md border border-ink-200 px-3 py-2 text-sm hover:border-teal-300"
+            >
+              <span className="text-ink-600">{p.label}</span>
+              <span className="font-semibold text-ink-950">{stats.byProduct[p.value] ?? 0}</span>
             </Link>
           ))}
         </div>

@@ -184,6 +184,25 @@ html.lenis, html.lenis body {
   text-wrap: balance;
 }
 
+/* "Coming soon" shimmer used by the navbar Products dropdown — gold accent,
+   kept out of the teal CTA palette since it's a teaser, not an action. */
+@keyframes shimmer-sweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+.text-shimmer-gold {
+  background-image: linear-gradient(110deg, var(--color-gold-600) 20%, var(--color-gold-300) 40%, #fff8ea 50%, var(--color-gold-300) 60%, var(--color-gold-600) 80%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 2.8s linear infinite;
+}
+
 /* Print-to-PDF isolation: used by admin document generators (e.g. Agreement
    Generator) to print only the designated area via window.print(). Elements
    are removed with display:none (not visibility) so they don't leave behind

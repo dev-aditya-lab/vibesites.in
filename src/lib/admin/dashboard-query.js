@@ -18,6 +18,7 @@ export async function getDashboardStats() {
     byLocation,
     byStatus,
     byFormType,
+    byProduct,
   ] = await Promise.all([
     supabase.from("leads").select("id", { count: "exact", head: true }),
     supabase.from("leads").select("id", { count: "exact", head: true }).gte("created_at", startOfWeek.toISOString()),
@@ -36,6 +37,7 @@ export async function getDashboardStats() {
       .limit(8),
     supabase.from("leads").select("status"),
     supabase.from("leads").select("form_type"),
+    supabase.from("leads").select("product").not("product", "is", null),
   ]);
 
   const statusCounts = {};
@@ -48,6 +50,11 @@ export async function getDashboardStats() {
     formTypeCounts[row.form_type] = (formTypeCounts[row.form_type] ?? 0) + 1;
   }
 
+  const productCounts = {};
+  for (const row of byProduct.data ?? []) {
+    productCounts[row.product] = (productCounts[row.product] ?? 0) + 1;
+  }
+
   return {
     total: total ?? 0,
     newThisWeek: newThisWeek ?? 0,
@@ -56,5 +63,6 @@ export async function getDashboardStats() {
     byLocation: byLocation.data ?? [],
     byStatus: statusCounts,
     byFormType: formTypeCounts,
+    byProduct: productCounts,
   };
 }

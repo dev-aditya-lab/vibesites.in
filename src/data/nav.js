@@ -1,11 +1,32 @@
 export const primaryNav = [
   { label: "Services", href: "/services", megaMenu: true },
+  { label: "Products", href: "/vibeproducts/rewardLoop", productsMenu: true },
   { label: "Work", href: "/portfolio" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
   // { label: "Team", href: "/team" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
+];
+
+/** Vibesites' own SaaS products, shown in the navbar "Products" dropdown. */
+export const products = [
+  {
+    key: "rewardloop",
+    name: "RewardLoop",
+    tagline: "QR-based loyalty & rewards for restaurants",
+    href: "/vibeproducts/rewardLoop",
+    icon: "Infinity",
+    status: "live",
+  },
+  {
+    key: "next-product",
+    name: "New Product",
+    tagline: "Something new is brewing — stay tuned",
+    href: null,
+    icon: "Sparkles",
+    status: "soon",
+  },
 ];
 
 export const footerNav = {

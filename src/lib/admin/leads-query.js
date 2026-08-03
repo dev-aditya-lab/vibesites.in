@@ -19,6 +19,7 @@ export async function queryLeads({
   location,
   tag,
   formType,
+  product,
   q,
   sort = "created_at.desc",
 } = {}) {
@@ -54,7 +55,7 @@ export async function queryLeads({
   let query = supabase
     .from("leads")
     .select(
-      `id, name, email, phone, whatsapp_number, company, location_text, budget_range, status, source_page, form_type, created_at,
+      `id, name, email, phone, whatsapp_number, company, location_text, budget_range, status, source_page, form_type, product, created_at,
        lead_services(service:services(id,slug,name)),
        lead_locations(location:locations(id,name)),
        lead_tags(tag:tags(id,name))`,
@@ -64,6 +65,7 @@ export async function queryLeads({
   if (allowedIds) query = query.in("id", allowedIds);
   if (status) query = query.eq("status", status);
   if (formType) query = query.eq("form_type", formType);
+  if (product) query = query.eq("product", product);
   if (q) query = query.or(`name.ilike.%${q}%,email.ilike.%${q}%,company.ilike.%${q}%`);
 
   query = query.order(sortColumn || "created_at", { ascending: sortDir === "asc" });

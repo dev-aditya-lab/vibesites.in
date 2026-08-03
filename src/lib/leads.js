@@ -22,6 +22,7 @@ export async function submitLead({
   serviceSlugs = [],
   sourcePage,
   formType = "quote",
+  product,
 }) {
   const supabase = createClient();
   const leadId = crypto.randomUUID();
@@ -38,6 +39,7 @@ export async function submitLead({
     budget_range: budgetRange || null,
     source_page: sourcePage || null,
     form_type: formType,
+    product: product || null,
   });
 
   if (leadError) throw leadError;

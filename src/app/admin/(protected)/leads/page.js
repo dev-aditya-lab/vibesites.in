@@ -13,6 +13,7 @@ export default async function AdminLeadsPage({ searchParams }) {
     location: params?.location || "",
     tag: params?.tag || "",
     formType: params?.formType || "",
+    product: params?.product || "",
     sort: params?.sort || "created_at.desc",
   };
   const page = Number(params?.page) || 1;
