@@ -113,14 +113,28 @@ export default function Header() {
                       aria-expanded={productsOpen}
                       onFocus={openProducts}
                       className={cn(
-                        "flex items-center gap-1 text-sm font-medium tracking-tight text-ink-800 transition-colors",
+                        "relative flex items-center gap-1 text-sm font-medium tracking-tight text-ink-800 transition-colors",
                         (active || productsOpen) && "text-teal-600"
                       )}
                     >
+                      <motion.span
+                        aria-hidden
+                        className="absolute -inset-x-3 -inset-y-2 -z-10 rounded-full bg-teal-400/15"
+                        animate={{ opacity: [0.35, 0.75, 0.35], scale: [0.92, 1, 0.92] }}
+                        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                      />
                       {item.label}
                       <ChevronDown
                         className={cn("size-3.5 transition-transform duration-300", productsOpen && "rotate-180")}
                       />
+                      <motion.span
+                        aria-hidden
+                        className="absolute -right-3.5 -top-2.5 rounded-full bg-teal-600 px-1.5 py-0.5 text-[9px] font-bold uppercase leading-none tracking-wide text-cream-50"
+                        animate={{ scale: [1, 1.12, 1] }}
+                        transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        New
+                      </motion.span>
                     </Link>
                     <AnimatePresence>
                       {productsOpen && (
