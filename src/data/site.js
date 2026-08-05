@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Vibesites",
   legalName: "Vibesites",
+  proprietor: "Aditya Kumar Gupta",
   tagline: "Websites and apps built to convert.",
   description:
     "Vibesites is a web and app development agency. We design and build fast, beautiful websites, e-commerce stores, and mobile apps that turn visitors into customers.",

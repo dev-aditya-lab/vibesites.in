@@ -79,6 +79,15 @@ export default function RefundPolicyPage() {
           credited within 5-6 days to the original source of payment.
         </p>
       </div>
+
+      <div>
+        <h2>Business details</h2>
+        <p>
+          {siteConfig.name} is operated by {siteConfig.proprietor}. All payments are received, and refunds are
+          issued, under this name as registered on our PAN Card and bank account, in accordance with payment
+          gateway verification requirements.
+        </p>
+      </div>
     </LegalLayout>
   );
 }
