@@ -75,7 +75,8 @@ export default function RefundPolicyPage() {
         <h2>How to request a refund</h2>
         <p>
           Message us at {siteConfig.email} or via WhatsApp at {siteConfig.whatsapp.display} with your project details.
-          We aim to review and resolve refund requests within 5 business days.
+          We aim to review and resolve refund requests within 5 business days. Once approved, refunds will be
+          credited within 5-6 days to the original source of payment.
         </p>
       </div>
     </LegalLayout>

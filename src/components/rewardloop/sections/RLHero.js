@@ -8,13 +8,13 @@ import { rlHeroBullets } from "@/data/rewardloop";
 
 export default function RLHero() {
   return (
-    <section className="relative flex min-h-dvh items-center overflow-hidden bg-white pt-24 pb-16 sm:pt-28">
-      {/* Image is capped at its native 1920px width and centered, so it's
-          never upscaled past its source resolution on wider viewports
-          (that upscaling is what was reading as "stretched/blurry"). On
-          screens up to 1920px wide this still fills edge-to-edge exactly
-          like before. */}
-      <div className="absolute inset-0 mx-auto h-full w-full max-w-[1920px]">
+    <section className="relative flex min-h-dvh items-center overflow-hidden bg-linear-to-b from-blush-100 via-blush-50 to-white pt-24 pb-16 sm:pt-28">
+      {/* Hidden on mobile — the photo has no room to breathe on narrow
+          viewports and was just cropping into a distracting phone sliver
+          behind the text. Sm+ only, where it's capped at its native 1920px
+          width and centered so it's never upscaled past source resolution
+          (that upscaling is what previously read as "stretched/blurry"). */}
+      <div className="absolute inset-0 mx-auto hidden h-full w-full max-w-[1920px] sm:block">
         <Image
           src="/rewardloop/rewardloop-hero.jpg"
           alt=""
@@ -30,7 +30,7 @@ export default function RLHero() {
           stays completely clean, with no white haze over it. */}
       <div
         aria-hidden
-        className="absolute inset-y-0 left-0 w-full sm:w-3/5 lg:w-[42%] bg-linear-to-r from-white from-40% via-white/70 to-transparent"
+        className="absolute inset-y-0 left-0 hidden w-3/5 bg-linear-to-r from-white from-40% via-white/70 to-transparent sm:block lg:w-[42%]"
       />
 
       <Container className="relative">
